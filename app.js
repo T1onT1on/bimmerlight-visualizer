@@ -10,8 +10,6 @@
   const curveContext = curveCanvas.getContext("2d");
 
   const elements = {
-    templateInput: document.getElementById("templateInput"),
-    pasteTarget: document.getElementById("pasteTarget"),
     pasteModeBtn: document.getElementById("pasteModeBtn"),
     byteModeBtn: document.getElementById("byteModeBtn"),
     humanModeBtn: document.getElementById("humanModeBtn"),
@@ -32,8 +30,8 @@
     humanSectionsRight: document.getElementById("humanSectionsRight"),
     refreshHumanBtn: document.getElementById("refreshHumanBtn"),
     applyHumanBtn: document.getElementById("applyHumanBtn"),
-    splitTemplateBtn: document.getElementById("splitTemplateBtn"),
     loadOriginalBtn: document.getElementById("loadOriginalBtn"),
+    loadFactoryShimmerBtn: document.getElementById("loadFactoryShimmerBtn"),
     loadV15Btn: document.getElementById("loadV15Btn"),
     loadDoubleSwipeFlashBtn: document.getElementById("loadDoubleSwipeFlashBtn"),
     parseBtn: document.getElementById("parseBtn"),
@@ -53,7 +51,12 @@
     viewLeftBtn: document.getElementById("viewLeftBtn"),
     viewBothBtn: document.getElementById("viewBothBtn"),
     editCurveBtn: document.getElementById("editCurveBtn"),
+    curveHeadingDynamic: document.getElementById("curveHeadingDynamic"),
+    curveModeControls: document.getElementById("curveModeControls"),
     curveEditorPanel: document.getElementById("curveEditorPanel"),
+    curveEditorLeadingSlot: document.getElementById("curveEditorLeadingSlot"),
+    curveEditorCopy: document.getElementById("curveEditorCopy"),
+    curveEditorFooter: document.getElementById("curveEditorFooter"),
     curveEditStatus: document.getElementById("curveEditStatus"),
     applyCurveBtn: document.getElementById("applyCurveBtn"),
     saveCurveBtn: document.getElementById("saveCurveBtn"),
@@ -64,6 +67,7 @@
     zoomOutBtn: document.getElementById("zoomOutBtn"),
     zoomFitBtn: document.getElementById("zoomFitBtn"),
     zoomInBtn: document.getElementById("zoomInBtn"),
+    curveScrollRow: document.getElementById("curveScrollRow"),
     curvePan: document.getElementById("curvePan"),
     curveContextMenu: document.getElementById("curveContextMenu"),
     curveContextLabel: document.getElementById("curveContextLabel"),
@@ -110,7 +114,7 @@
     lastFrame: performance.now(),
     laneRefs: new Map(),
     inputMode: "paste",
-    inputSource: "paste",
+    inputSource: "fields",
     byteSide: "left",
     humanSide: "left",
     humanDraft: { left: [], right: [] },
@@ -806,7 +810,6 @@
     }
     const fields = fieldsFromEncoded(encoded);
     setFields(fields);
-    elements.templateInput.value = templateFromFields(fields, "Human-readable editor generated data");
     if (!syncByteGridFromFields()) return false;
     state.humanDirty = false;
     state.inputSource = "human";
@@ -856,25 +859,6 @@
     };
   }
 
-  function templateFromFields(fields, description = "Curve editor generated data") {
-    return `Source: G20 2020 PreLCI EU Laserlight
-Description: ${description}
-
-FLM2 Left [43]
-Staging1_Data:
-${fields.left1}
-
-Staging2_Data:
-${fields.left2}
-
-FLM2 Right [44]
-Staging1_Data:
-${fields.right1}
-
-Staging2_Data:
-${fields.right2}`;
-  }
-
   function cloneAnalysis(analysis) {
     if (typeof structuredClone === "function") return structuredClone(analysis);
     return JSON.parse(JSON.stringify(analysis));
@@ -910,61 +894,6 @@ ${fields.right2}`;
       elements.right2.value = fields.right2;
     }
     return fields;
-  }
-
-  function applyPasteInput(announce = true) {
-    const text = elements.templateInput.value.trim();
-    if (!text) {
-      if (announce) setMessage("请粘贴完整模板或字节数据", "error");
-      return false;
-    }
-
-    const looksLikeTemplate = /FLM2\s+(?:Left|Right)|Staging1_Data/i.test(text);
-    if (looksLikeTemplate) {
-      const result = Core.extractTemplate(text);
-      if (result.errors.length) {
-        setMessage(result.errors.join("；"), "error");
-        return false;
-      }
-      setFields(result.fields);
-      state.inputSource = "fields";
-      if (announce) setMessage("完整模板已识别并拆分为左右数据", "success");
-      return true;
-    }
-
-    const parsed = Core.parseByteString(text, "粘贴字节");
-    if (parsed.errors.length) {
-      setMessage(parsed.errors.join("；"), "error");
-      return false;
-    }
-    const capacity = Core.LIMITS.staging1 + Core.LIMITS.staging2;
-    if (parsed.bytes.length > capacity) {
-      setMessage(`粘贴数据为 ${parsed.bytes.length} Byte，超过每侧 ${capacity} Byte 容量`, "error");
-      return false;
-    }
-
-    const staging1 = formatByteList(parsed.bytes.slice(0, Core.LIMITS.staging1));
-    const staging2 = formatByteList(parsed.bytes.slice(Core.LIMITS.staging1));
-    const target = elements.pasteTarget.value;
-    if (target === "both") {
-      setFields({ left1: staging1, left2: staging2, right1: staging1, right2: staging2 });
-      elements.mirrorLeft.checked = true;
-    } else if (target === "left") {
-      setFields({ left1: staging1, left2: staging2, right1: "", right2: "" });
-      elements.mirrorLeft.checked = false;
-    } else {
-      setFields({ left1: "", left2: "", right1: staging1, right2: staging2 });
-      elements.mirrorLeft.checked = false;
-    }
-    state.inputSource = "fields";
-    if (announce) {
-      setMessage(`已读取 ${parsed.bytes.length} Byte 并自动分配 Staging1 / Staging2`, "success");
-    }
-    return true;
-  }
-
-  function importTemplate() {
-    applyPasteInput(true);
   }
 
   function syncByteGridFromFields() {
@@ -1031,10 +960,6 @@ ${fields.right2}`;
 
     if (state.inputMode === "bytes" && !syncFieldsFromByteGrid()) return;
     if (state.inputMode === "human" && !syncFieldsFromHumanDraft()) return;
-    if (state.inputMode === "paste" && state.inputSource === "paste" && elements.templateInput.value.trim()) {
-      if (!applyPasteInput(false)) return;
-    }
-
     if (mode === "bytes") {
       if (!syncByteGridFromFields()) return;
       state.inputSource = "bytes";
@@ -1042,9 +967,7 @@ ${fields.right2}`;
       if (!loadHumanDraftFromFields()) return;
       state.inputSource = "human";
     } else {
-      const fields = byteFields();
-      elements.templateInput.value = templateFromFields(fields, "Current working data");
-      state.inputSource = "paste";
+      state.inputSource = "fields";
     }
 
     state.inputMode = mode;
@@ -1076,8 +999,6 @@ ${fields.right2}`;
     } else if (state.inputMode === "human") {
       syncFieldsFromHumanDraft({ preview: true });
       return;
-    } else if (state.inputSource === "paste" && elements.templateInput.value.trim()) {
-      if (!applyPasteInput(false)) return;
     }
     parseInputs("自定义数据预览成功");
   }
@@ -1131,9 +1052,8 @@ ${fields.right2}`;
 
   function loadSample(sampleKey, message) {
     const sample = Samples[sampleKey];
-    elements.templateInput.value = sample.template;
     setFields(sample);
-    state.inputSource = "paste";
+    state.inputSource = "fields";
     parseInputs(message);
   }
 
@@ -1235,28 +1155,23 @@ ${fields.right2}`;
   }
 
   function resizeCurveCanvas() {
-    if (!state.curveEditor.active) {
-      curveCanvas.width = 1351;
-      curveCanvas.height = 520;
-      renderCurveChart();
-      return;
-    }
-    const rect = curveCanvas.getBoundingClientRect();
-    curveCanvas.width = Math.max(900, Math.round(rect.width));
-    curveCanvas.height = Math.max(480, Math.round(rect.height));
+    curveCanvas.width = 1351;
+    curveCanvas.height = 520;
     renderCurveChart();
   }
 
   function setCurveEditorUi(active) {
     state.curveEditor.active = active;
+    elements.curveHeadingDynamic.replaceChildren(active ? elements.curveEditorCopy : elements.curveModeControls);
+    elements.curveEditorLeadingSlot.replaceChildren(active ? elements.curveModeControls : elements.curveEditorCopy);
     elements.curveEditorPanel.hidden = !active;
+    elements.curveEditorFooter.hidden = !active;
     elements.editCurveBtn.classList.toggle("is-active", active);
     elements.editCurveBtn.textContent = active ? "正在编辑曲线" : "编辑曲线";
     elements.editCurveBtn.disabled = active;
     curveCanvas.classList.toggle("is-editing", active);
+    elements.curvePanel.classList.toggle("is-editing", active);
     curveCanvas.style.cursor = active ? "crosshair" : "";
-    elements.curvePanel.classList.toggle("is-fullscreen", active);
-    document.body.classList.toggle("curve-editor-open", active);
     hideCurveContextMenu();
     syncSelectedPointInputs();
     updateCurveZoomUi();
@@ -1313,7 +1228,6 @@ ${fields.right2}`;
     const result = encodeCurrentCurves();
     if (!result) return;
     setFields(result.fields);
-    elements.templateInput.value = templateFromFields(result.fields);
     state.inputSource = "fields";
     syncByteGridFromFields();
     leaveCurveEditing();
@@ -1347,7 +1261,6 @@ ${fields.right2}`;
         return;
       }
       setFields(saved.fields);
-      elements.templateInput.value = templateFromFields(saved.fields, "Loaded from saved curve");
       state.inputSource = "fields";
       syncByteGridFromFields();
       leaveCurveEditing();
@@ -1475,6 +1388,7 @@ ${fields.right2}`;
     elements.zoomInBtn.disabled = !state.curveEditor.active || zoomIndex >= CURVE_ZOOM_LEVELS.length - 1;
     elements.zoomFitBtn.disabled = !state.curveEditor.active;
     elements.zoomFitBtn.textContent = `${state.curveEditor.zoom}×`;
+    elements.curveScrollRow.hidden = !state.curveEditor.active || geometry.maxStart <= 0;
     elements.curvePan.disabled = !state.curveEditor.active || geometry.maxStart <= 0;
     elements.curvePan.max = String(Math.round(geometry.maxStart));
     elements.curvePan.value = String(Math.round(geometry.viewStart));
@@ -1818,7 +1732,6 @@ ${fields.right2}`;
   }
 
   function clearAll() {
-    elements.templateInput.value = "";
     setFields({});
     state.analysis = null;
     state.currentTime = 0;
@@ -1845,7 +1758,7 @@ ${fields.right2}`;
     elements.humanSectionsLeft.replaceChildren();
     elements.humanSectionsRight.replaceChildren();
     state.inputMode = "paste";
-    state.inputSource = "paste";
+    state.inputSource = "fields";
     elements.pasteModePanel.hidden = false;
     elements.byteModePanel.hidden = true;
     elements.humanModePanel.hidden = true;
@@ -2153,9 +2066,6 @@ ${fields.right2}`;
       if (state.inputMode === "human" && !syncFieldsFromHumanDraft()) {
         throw new Error("人类可读视图仍有无效值，请先修正");
       }
-      if (state.inputMode === "paste" && state.inputSource === "paste" && elements.templateInput.value.trim()) {
-        if (!applyPasteInput(false)) throw new Error("粘贴内容无法转换为 FLM2 数据");
-      }
       analysis = Core.parseProject(getFields());
     }
 
@@ -2339,17 +2249,16 @@ ${fields.right2}`;
   elements.humanModePanel.addEventListener("click", handleHumanClick);
   elements.refreshHumanBtn.addEventListener("click", () => loadHumanDraftFromFields(true));
   elements.applyHumanBtn.addEventListener("click", applyHumanReadable);
-  elements.templateInput.addEventListener("input", () => {
-    state.inputSource = "paste";
-  });
   [elements.left1, elements.left2, elements.right1, elements.right2].forEach((textarea) => {
     textarea.addEventListener("input", () => {
       state.inputSource = "fields";
     });
   });
-  elements.splitTemplateBtn.addEventListener("click", importTemplate);
   elements.loadOriginalBtn.addEventListener("click", () => {
     loadSample("original2020", "已载入 2020 Original");
+  });
+  elements.loadFactoryShimmerBtn.addEventListener("click", () => {
+    loadSample("factoryShimmer", "已载入原厂 G20/G28 粼粼注目");
   });
   elements.loadV15Btn.addEventListener("click", () => {
     loadSample("v15", "已载入 MichaelNRW v15");

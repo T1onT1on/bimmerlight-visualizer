@@ -42,50 +42,46 @@
 
         <div class="input-mode-switch" role="tablist" aria-label="字节输入方式">
           <button id="pasteModeBtn" class="input-mode-button is-active" type="button" role="tab" aria-selected="true" aria-controls="pasteModePanel">
-            <span>01</span>粘贴字节
+            <span>01</span>字节串粘贴模式
           </button>
           <button id="byteModeBtn" class="input-mode-button" type="button" role="tab" aria-selected="false" aria-controls="byteModePanel">
             <span>02</span>逐字节输入
           </button>
           <button id="humanModeBtn" class="input-mode-button" type="button" role="tab" aria-selected="false" aria-controls="humanModePanel">
-            <span>03</span>人类可读
+            <span>03</span>代码转译
           </button>
         </div>
 
         <div id="pasteModePanel" class="input-mode-panel" role="tabpanel" aria-labelledby="pasteModeBtn">
-          <div class="import-grid">
-            <div class="template-import">
-              <div class="template-input-heading">
-                <label for="templateInput">完整模板或裸字节</label>
-                <label class="paste-target" for="pasteTarget">
-                  裸字节应用至
-                  <select id="pasteTarget">
-                    <option value="both">左右相同 [43 + 44]</option>
-                    <option value="left">仅车辆左 [43]</option>
-                    <option value="right">仅车辆右 [44]</option>
-                  </select>
-                </label>
-              </div>
-              <textarea id="templateInput" rows="7" spellcheck="false" placeholder="支持 0x01, 0x00... 或 01, 00... 也可粘贴包含左右 FLM2 的完整模板"></textarea>
-              <div class="button-row">
-                <button id="splitTemplateBtn" class="button button-secondary" type="button">读取粘贴内容</button>
-                <button id="loadOriginalBtn" class="button button-ghost" type="button">载入 2020 Original</button>
-                <button id="loadV15Btn" class="button button-ghost" type="button">载入 v15</button>
-                <button id="loadDoubleSwipeFlashBtn" class="button button-ghost" type="button">DoubleSwipe&amp;Flash</button>
-              </div>
+          <details class="advanced-inputs" open>
+            <summary>高级输入 / 四段原始数据</summary>
+            <div class="button-row advanced-sample-actions" aria-label="示例数据">
+              <button id="loadOriginalBtn" class="button button-ghost" type="button">原厂:G20/G28激光大灯欧规(PreCLI,2019-2022) </button>
+              <button id="loadFactoryShimmerBtn" class="button button-ghost" type="button">原厂:G20/G28 粼粼注目(LCI1/2,2022-2026)</button>
+              <button id="loadV15Btn" class="button button-ghost" type="button">自定义:四次扫灯</button>
+              <button id="loadDoubleSwipeFlashBtn" class="button button-ghost" type="button">自定义:二次闪光+扫灯</button>
             </div>
-
-            <div class="input-guide">
-              <p class="guide-kicker">自动适应格式</p>
-              <p>接受 <code>0x00</code> 或 <code>00</code>，可使用逗号、空格、换行或分号分隔。完整模板会自动识别左右两个 FLM2。</p>
-              <dl>
-                <div><dt>Staging1</dt><dd>最大 252 Byte</dd></div>
-                <div><dt>Staging2</dt><dd>最大 168 Byte</dd></div>
-                <div><dt>每侧总容量</dt><dd>420 Byte</dd></div>
-                <div><dt>时间单位</dt><dd>Byte × 10ms</dd></div>
-              </dl>
+            <div class="staging-grid">
+              <fieldset>
+                <legend>FLM2 LEFT [43]</legend>
+                <label for="left1">Staging1_Data</label>
+                <textarea id="left1" rows="5" spellcheck="false"></textarea>
+                <label for="left2">Staging2_Data</label>
+                <textarea id="left2" rows="3" spellcheck="false"></textarea>
+              </fieldset>
+              <fieldset>
+                <legend>FLM2 RIGHT [44]</legend>
+                <label for="right1">Staging1_Data</label>
+                <textarea id="right1" rows="5" spellcheck="false"></textarea>
+                <label for="right2">Staging2_Data</label>
+                <textarea id="right2" rows="3" spellcheck="false"></textarea>
+              </fieldset>
             </div>
-          </div>
+            <label class="checkbox-line" for="mirrorLeft">
+              <input id="mirrorLeft" type="checkbox" checked>
+              右侧为空时自动复制左侧数据
+            </label>
+          </details>
         </div>
 
         <div id="byteModePanel" class="input-mode-panel byte-mode-panel" role="tabpanel" aria-labelledby="byteModeBtn" hidden>
@@ -133,39 +129,15 @@
         </div>
 
         <div class="mapping-ribbon" aria-label="G20 PreLCI 实测通道映射">
-          <span class="is-ch01"><b>CH01</b>浅蓝 · 近光主层</span>
-          <span class="is-ch02"><b>CH02</b>橙色 · DRL主层</span>
-          <span class="is-ch03"><b>CH03</b>黄色 · DRL过渡</span>
-          <span class="is-ch04"><b>CH04</b>深蓝 · 近光低增益</span>
-          <span class="is-ch05"><b>CH05</b>紫色 · 近光高增益</span>
+          <span class="is-ch01"><b>CH01</b>浅蓝 · 近光主灯</span>
+          <span class="is-ch02"><b>CH02</b>橙色 · 日行灯主灯</span>
+          <span class="is-ch03"><b>CH03</b>黄色 · 日行灯过渡灯(低亮)</span>
+          <span class="is-ch04"><b>CH04</b>深蓝 · 近光过渡灯(低亮)</span>
+          <span class="is-ch05"><b>CH05</b>紫色 · 激光蓝灯带&近光点缀灯</span>
         </div>
 
-          <details class="advanced-inputs">
-          <summary>高级输入 / 四段原始数据</summary>
-          <div class="staging-grid">
-            <fieldset>
-              <legend>FLM2 LEFT [43]</legend>
-              <label for="left1">Staging1_Data</label>
-              <textarea id="left1" rows="5" spellcheck="false"></textarea>
-              <label for="left2">Staging2_Data</label>
-              <textarea id="left2" rows="3" spellcheck="false"></textarea>
-            </fieldset>
-            <fieldset>
-              <legend>FLM2 RIGHT [44]</legend>
-              <label for="right1">Staging1_Data</label>
-              <textarea id="right1" rows="5" spellcheck="false"></textarea>
-              <label for="right2">Staging2_Data</label>
-              <textarea id="right2" rows="3" spellcheck="false"></textarea>
-            </fieldset>
-          </div>
-          <label class="checkbox-line" for="mirrorLeft">
-            <input id="mirrorLeft" type="checkbox" checked>
-            右侧为空时自动复制左侧数据
-          </label>
-        </details>
-
         <div class="parse-row">
-          <button id="parseBtn" class="button button-primary" type="button">预览曲线和动画</button>
+          <button id="parseBtn" class="button button-primary" type="button">载入当前数据</button>
           <button id="clearBtn" class="button button-ghost" type="button">清空</button>
           <p id="parseMessage" class="parse-message" role="status"></p>
         </div>
@@ -191,26 +163,32 @@
               <h3>五通道亮度曲线</h3>
             </div>
             <div class="curve-heading-tools">
-              <div class="curve-channel-switch" role="group" aria-label="曲线通道显示">
-                <button class="curve-channel-button is-ch01 is-active" type="button" data-channel="1" aria-pressed="true">CH01</button>
-                <button class="curve-channel-button is-ch02 is-active" type="button" data-channel="2" aria-pressed="true">CH02</button>
-                <button class="curve-channel-button is-ch03 is-active" type="button" data-channel="3" aria-pressed="true">CH03</button>
-                <button class="curve-channel-button is-ch04 is-active" type="button" data-channel="4" aria-pressed="true">CH04</button>
-                <button class="curve-channel-button is-ch05 is-active" type="button" data-channel="5" aria-pressed="true">CH05</button>
-              </div>
-              <div class="curve-view-switch" role="group" aria-label="曲线显示侧别">
-                <button id="viewRightBtn" class="curve-view-button" type="button">仅右大灯 [44]</button>
-                <button id="viewLeftBtn" class="curve-view-button" type="button">仅左大灯 [43]</button>
-                <button id="viewBothBtn" class="curve-view-button is-active" type="button" aria-pressed="true">显示两个大灯</button>
+              <div id="curveHeadingDynamic" class="curve-heading-dynamic">
+                <div id="curveModeControls" class="curve-mode-controls">
+                  <div class="curve-channel-switch" role="group" aria-label="曲线通道显示">
+                    <button class="curve-channel-button is-ch01 is-active" type="button" data-channel="1" aria-pressed="true">CH01</button>
+                    <button class="curve-channel-button is-ch02 is-active" type="button" data-channel="2" aria-pressed="true">CH02</button>
+                    <button class="curve-channel-button is-ch03 is-active" type="button" data-channel="3" aria-pressed="true">CH03</button>
+                    <button class="curve-channel-button is-ch04 is-active" type="button" data-channel="4" aria-pressed="true">CH04</button>
+                    <button class="curve-channel-button is-ch05 is-active" type="button" data-channel="5" aria-pressed="true">CH05</button>
+                  </div>
+                  <div class="curve-view-switch" role="group" aria-label="曲线显示侧别">
+                    <button id="viewRightBtn" class="curve-view-button" type="button">仅右大灯 [44]</button>
+                    <button id="viewLeftBtn" class="curve-view-button" type="button">仅左大灯 [43]</button>
+                    <button id="viewBothBtn" class="curve-view-button is-active" type="button" aria-pressed="true">显示两个大灯</button>
+                  </div>
+                </div>
               </div>
               <button id="editCurveBtn" class="button button-secondary curve-edit-button" type="button">编辑曲线</button>
             </div>
           </div>
           <div id="curveEditorPanel" class="curve-editor-panel" hidden>
-            <div class="curve-editor-copy">
-              <p class="guide-kicker">CURVE EDITOR</p>
-              <p>拖动节点调整时间与亮度；在线上右键新增节点，在节点上右键删除。保存时自动量化为 1% / 10ms。</p>
-              <output id="curveEditStatus">请选择一个节点开始编辑</output>
+            <div id="curveEditorLeadingSlot" class="curve-editor-leading-slot">
+              <div id="curveEditorCopy" class="curve-editor-copy">
+                <p class="guide-kicker">CURVE EDITOR</p>
+                <p>拖动节点调整时间与亮度；在线上右键新增节点，在节点上右键删除。保存时自动量化为 1% / 10ms。</p>
+                <output id="curveEditStatus">请选择一个节点开始编辑</output>
+              </div>
             </div>
             <div class="curve-editor-precision" aria-label="精确编辑当前控制点">
               <label>时间 <span><input id="pointTimeInput" type="number" min="0" step="10" disabled> ms</span></label>
@@ -220,18 +198,21 @@
               <button id="zoomOutBtn" class="curve-tool-button" type="button" aria-label="缩小时间轴">−</button>
               <button id="zoomFitBtn" class="curve-tool-button curve-zoom-label" type="button">1×</button>
               <button id="zoomInBtn" class="curve-tool-button" type="button" aria-label="放大时间轴">+</button>
-              <label class="curve-pan-label" for="curvePan">窗口</label>
-              <input id="curvePan" class="curve-pan" type="range" min="0" max="0" step="10" value="0">
-            </div>
-            <div class="curve-editor-actions">
-              <button id="applyCurveBtn" class="button button-primary" type="button">应用并生成代码</button>
-              <button id="saveCurveBtn" class="button button-secondary" type="button">保存曲线</button>
-              <button id="loadCurveBtn" class="button button-ghost" type="button">加载已保存</button>
-              <button id="cancelCurveBtn" class="button button-ghost" type="button">撤销本次编辑</button>
             </div>
           </div>
           <div class="curve-canvas-wrap">
             <canvas id="curveCanvas" width="1351" height="520" aria-label="五个 Channel 的亮度时间曲线"></canvas>
+            <div id="curveEditorFooter" class="curve-editor-footer" hidden>
+              <div id="curveScrollRow" class="curve-scroll-row" hidden>
+                <input id="curvePan" class="curve-pan" type="range" min="0" max="0" step="10" value="0" aria-label="缩放曲线水平滚动">
+              </div>
+              <div class="curve-editor-actions">
+                <button id="applyCurveBtn" class="button button-primary" type="button">应用并生成代码</button>
+                <button id="saveCurveBtn" class="button button-secondary" type="button">保存曲线</button>
+                <button id="loadCurveBtn" class="button button-ghost" type="button">加载已保存</button>
+                <button id="cancelCurveBtn" class="button button-ghost" type="button">撤销本次编辑</button>
+              </div>
+            </div>
             <div class="curve-legend" aria-label="曲线图例">
               <span class="is-ch01">CH01</span>
               <span class="is-ch02">CH02</span>
@@ -248,50 +229,54 @@
           </div>
         </div>
 
-        <div class="preview-frame">
-          <canvas id="visualizerCanvas" width="1351" height="900" aria-label="BMW G20 迎宾灯逻辑动画预览"></canvas>
-        </div>
+        <div class="simulation-stage-layout">
+          <div class="simulation-preview-stack">
+            <div class="preview-frame">
+              <canvas id="visualizerCanvas" width="1351" height="900" aria-label="BMW G20 迎宾灯逻辑动画预览"></canvas>
+            </div>
 
-        <div class="lamp-readouts" aria-label="当前灯组合成亮度">
-          <div class="lamp-readout">
-            <span>画面左 / 车辆右 [44]</span>
-            <strong>DRL 光导 <output id="rightDrlOutput">0%</output></strong>
-            <strong>方形近光 <output id="rightLowOutput">0%</output></strong>
-          </div>
-          <p>只镜像灯体几何<br>不反转字节时序</p>
-          <div class="lamp-readout is-vehicle-left">
-            <span>画面右 / 车辆左 [43]</span>
-            <strong>DRL 光导 <output id="leftDrlOutput">0%</output></strong>
-            <strong>方形近光 <output id="leftLowOutput">0%</output></strong>
-          </div>
-        </div>
+            <div class="lamp-readouts" aria-label="当前灯组合成亮度">
+              <div class="lamp-readout">
+                <span>画面左 / 车辆右大灯 [44]</span>
+                <strong>日行灯总亮度 <output id="rightDrlOutput">0%</output></strong>
+                <strong>近光灯总亮度 <output id="rightLowOutput">0%</output></strong>
+              </div>
+              <p>可视化预览</p>
+              <div class="lamp-readout is-vehicle-left">
+                <span>画面右 / 车辆左大灯 [43]</span>
+                <strong>日行灯总亮度 <output id="leftDrlOutput">0%</output></strong>
+                <strong>近光灯总亮度 <output id="leftLowOutput">0%</output></strong>
+              </div>
+            </div>
 
-        <div class="transport" aria-label="播放控制">
-          <button id="playBtn" class="transport-button" type="button" aria-label="播放">▶</button>
-          <div class="time-readout"><strong id="currentTime">0.00</strong><span>/</span><span id="totalTime">0.00 s</span></div>
-          <input id="timeline" type="range" min="0" max="1000" value="0" step="1" aria-label="动画时间轴">
-          <label for="speedSelect">速度
-            <select id="speedSelect">
-              <option value="0.25">0.25×</option>
-              <option value="0.5">0.5×</option>
-              <option value="1" selected>1×</option>
-              <option value="2">2×</option>
-            </select>
-          </label>
-          <label class="loop-control" for="loopToggle"><input id="loopToggle" type="checkbox" checked>循环</label>
-        </div>
-      </section>
-
-      <section class="diagnostics" aria-labelledby="diagnostics-title">
-        <div class="section-heading">
-          <div>
-            <p class="section-index">03 / CHANNELS</p>
-            <h2 id="diagnostics-title">通道诊断</h2>
+            <div class="transport" aria-label="播放控制">
+              <button id="playBtn" class="transport-button" type="button" aria-label="播放">▶</button>
+              <div class="time-readout"><strong id="currentTime">0.00</strong><span>/</span><span id="totalTime">0.00 s</span></div>
+              <input id="timeline" type="range" min="0" max="1000" value="0" step="1" aria-label="动画时间轴">
+              <label for="speedSelect">速度
+                <select id="speedSelect">
+                  <option value="0.25">0.25×</option>
+                  <option value="0.5">0.5×</option>
+                  <option value="1" selected>1×</option>
+                  <option value="2">2×</option>
+                </select>
+              </label>
+              <label class="loop-control" for="loopToggle"><input id="loopToggle" type="checkbox" checked>循环</label>
+            </div>
           </div>
-          <p class="diagnostic-note">彩色 SVG 图层透明度直接使用原始百分比；下方 DRL/近光读数仍显示合成结果。</p>
+
+          <section class="diagnostics" aria-labelledby="diagnostics-title">
+            <div class="section-heading">
+              <div>
+                <p class="section-index">03 / CHANNELS</p>
+                <h2 id="diagnostics-title">通道诊断</h2>
+              </div>
+              <p class="diagnostic-note">彩色 SVG 图层透明度直接使用原始百分比；下方 DRL/近光读数仍显示合成结果。</p>
+            </div>
+            <div id="channelList" class="channel-list"></div>
+            <div id="warningList" class="warning-list" aria-live="polite"></div>
+          </section>
         </div>
-        <div id="channelList" class="channel-list"></div>
-        <div id="warningList" class="warning-list" aria-live="polite"></div>
       </section>
 
       <section class="bimmercode-deck" aria-labelledby="bimmercode-title">

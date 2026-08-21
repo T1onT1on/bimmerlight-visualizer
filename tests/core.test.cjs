@@ -9,6 +9,7 @@ require("../sample-v15.js");
 const sample = globalThis.WelcomeLightSamples.v15;
 const original = globalThis.WelcomeLightSamples.original2020;
 const doubleSwipeFlash = globalThis.WelcomeLightSamples.doubleSwipeFlash;
+const factoryShimmer = globalThis.WelcomeLightSamples.factoryShimmer;
 
 function fieldsFromEncoded(encoded) {
   const format = (bytes) => bytes.map(Core.hexByte).join(", ");
@@ -82,6 +83,10 @@ test("input workbench exposes paste, per-byte, human-readable, chart, and previe
     "viewLeftBtn",
     "viewBothBtn",
     "editCurveBtn",
+    "curveHeadingDynamic",
+    "curveModeControls",
+    "curveEditorLeadingSlot",
+    "curveEditorCopy",
     "applyCurveBtn",
     "saveCurveBtn",
     "loadCurveBtn",
@@ -90,11 +95,14 @@ test("input workbench exposes paste, per-byte, human-readable, chart, and previe
     "zoomOutBtn",
     "zoomFitBtn",
     "zoomInBtn",
+    "curveEditorFooter",
+    "curveScrollRow",
     "curvePan",
     "curveContextMenu",
     "addCurvePointBtn",
     "deleteCurvePointBtn",
     "loadDoubleSwipeFlashBtn",
+    "loadFactoryShimmerBtn",
     "bimmerCodeFileInput",
     "bimmerCodeLeftCard",
     "bimmerCodeRightCard",
@@ -104,9 +112,12 @@ test("input workbench exposes paste, per-byte, human-readable, chart, and previe
   ]) {
     assert.match(html, new RegExp(`id="${id}"`));
   }
-  assert.match(html, />预览曲线和动画<\/button>/);
+  assert.match(html, /id="parseBtn"[^>]*>载入当前数据<\/button>/);
   assert.match(html, /width="1351" height="520"/);
   assert.equal((html.match(/class="curve-channel-button/g) || []).length, 5);
+  assert.ok(html.indexOf('id="curvePan"') > html.indexOf('id="curveCanvas"'));
+  assert.ok(html.indexOf('id="applyCurveBtn"') > html.indexOf('id="curvePan"'));
+  assert.doesNotMatch(html, /class="curve-pan-label"/);
   assert.match(html, /src="bimmercode\.js\?/);
 });
 
@@ -202,6 +213,22 @@ test("DoubleSwipe&Flash is a valid selectable five-channel template", () => {
   assert.deepEqual(imported.errors, []);
   assert.equal(imported.fields.left1, doubleSwipeFlash.left1);
   assert.equal(imported.fields.right1, doubleSwipeFlash.right1);
+});
+
+test("G20/G28 factory Shimmering Gaze template preserves both 420-byte sides", () => {
+  const result = Core.parseProject(factoryShimmer);
+  const imported = Core.extractTemplate(factoryShimmer.template);
+
+  assert.equal(factoryShimmer.name, "原厂:G20/G28 粼粼注目(LCI1/2,2022-2026)");
+  assert.equal(Core.parseByteString(factoryShimmer.left1).bytes.length, 252);
+  assert.equal(Core.parseByteString(factoryShimmer.left2).bytes.length, 168);
+  assert.equal(result.valid, true, result.errors.join("\n"));
+  assert.equal(factoryShimmer.left1, factoryShimmer.right1);
+  assert.equal(factoryShimmer.left2, factoryShimmer.right2);
+  assert.equal(imported.fields.left1, factoryShimmer.left1);
+  assert.equal(imported.fields.left2, factoryShimmer.left2);
+  assert.equal(imported.fields.right1, factoryShimmer.right1);
+  assert.equal(imported.fields.right2, factoryShimmer.right2);
 });
 
 test("brightness interpolation follows the cumulative duration pairs", () => {

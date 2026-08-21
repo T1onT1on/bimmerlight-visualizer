@@ -121,5 +121,55 @@ ${doubleSwipeFlashRight}
 Staging2_Data:
 `;
 
-  globalScope.WelcomeLightSamples = { original2020, v15, doubleSwipeFlash };
+  const factoryShimmerStaging1 = `
+01, 00, 0F, 19, 00, 28, 00, 3C, 00, 3C, 00, 3C, 00, 3F, 64, 32, 64, 32, 64, 32, 64, 32, 64, 32, 64, 32, 64, 32, 64, 32, 32, 32, 00,
+02, 00, 0B, 5A, 00, 21, 1E, 05, 1E, 03, 64, 03, 1E, 0D, 1E, 03, 64, 03, 1E, 0A, 1E, 21, 64, 4B, 1E,
+03, 00, 0B, 5A, 00, 21, 1E, 08, 1E, 03, 64, 03, 1E, 08, 1E, 03, 64, 03, 1E, 0D, 1E, 21, 64, 4B, 1E,
+04, 00, 0B, 2D, 1E, 14, 1E, 08, 1E, 06, 1E, 09, 5F, 03, 62, 03, 64, 03, 62, 02, 60, 53, 00, 03, 00,
+05, 00, 0A, 2D, 1E, 23, 1E, 06, 1E, 09, 5F, 03, 62, 03, 64, 03, 62, 02, 60, 4B, 00, 03, 00,
+06, 00, 03, 41, 00, 32, 43, 80, 43,
+07, 00, 03, 01, 43, 64, 43, 96, 00,
+08, 00, 0B, 01, 00, 21, 1E, 05, 1E, 03, 64, 03, 1E, 0D, 1E, 03, 64, 03, 1E, 0A, 1E, 21, 64, 4B, 1E,
+09, 00, 0B, 01, 00, 21, 1E, 08, 1E, 03, 64, 03, 1E, 08, 1E, 03, 64, 03, 1E, 0D, 1E, 21, 64, 4B, 1E,
+0A, 00, 03, 01, 00, 32, 43, 80, 43,
+0B, 00, 02, 01, 00, 05, 64,
+0C, 00, 0B, 5A, 00, 21, 1E, 03, 1E, 03, 64, 03, 1E, 12, 1E, 03, 64, 03, 1E, 08, 1E, 21, 64, 4B, 1E,
+0D, 00, 0A, 5A, 00, 21, 1E, 03, 64, 03, 1E, 17
+  `.trim();
+
+  const factoryShimmerStaging2Active = `
+1E, 03, 64, 03, 1E, 05, 1E, 21, 64, 4B, 1E,
+0E, 00, 0B, 01, 00, 21, 1E, 03, 1E, 03, 64, 03, 1E, 12, 1E, 03, 64, 03, 1E, 08, 1E, 21, 64, 4B, 1E,
+0F, 00, 0A, 01, 00, 21, 1E, 03, 64, 03, 1E, 17, 1E, 03, 64, 03, 1E, 05, 1E, 21, 64, 4B, 1E
+  `.trim();
+  const factoryShimmerStaging2 = `${factoryShimmerStaging2Active}, ${Array(109).fill("00").join(", ")}`;
+
+  const factoryShimmer = {
+    name: "原厂:G20/G28 粼粼注目(LCI1/2,2022-2026)",
+    author: "BMW factory data",
+    left1: factoryShimmerStaging1,
+    left2: factoryShimmerStaging2,
+    right1: factoryShimmerStaging1,
+    right2: factoryShimmerStaging2,
+  };
+
+  factoryShimmer.template = `Source: BMW G20/G28 LCI1/2 2022-2026
+Description: Factory Shimmering Gaze welcome-light data
+
+FLM2 Left [43]
+Staging1_Data:
+${factoryShimmerStaging1}
+
+Staging2_Data:
+${factoryShimmerStaging2}
+
+FLM2 Right [44]
+Staging1_Data:
+${factoryShimmerStaging1}
+
+Staging2_Data:
+${factoryShimmerStaging2}
+`;
+
+  globalScope.WelcomeLightSamples = { original2020, v15, doubleSwipeFlash, factoryShimmer };
 })(globalThis);

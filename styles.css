@@ -1019,6 +1019,10 @@ fieldset > label {
   text-transform: uppercase;
 }
 
+.advanced-sample-actions {
+  padding-bottom: 16px;
+}
+
 .staging-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1091,6 +1095,15 @@ input[type="checkbox"] {
   padding: 28px 30px 0;
 }
 
+.simulation-stage-layout {
+  display: grid;
+  gap: 18px;
+}
+
+.simulation-preview-stack {
+  min-width: 0;
+}
+
 .curve-panel {
   margin: 0 20px 20px;
   border: 1px solid var(--line-strong);
@@ -1123,6 +1136,14 @@ input[type="checkbox"] {
   align-items: center;
   justify-content: flex-end;
   flex-wrap: wrap;
+  gap: 10px;
+}
+
+.curve-heading-dynamic,
+.curve-mode-controls {
+  display: flex;
+  align-items: center;
+  min-width: 0;
   gap: 10px;
 }
 
@@ -1188,32 +1209,54 @@ input[type="checkbox"] {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 16px 22px;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 9px 22px;
   border-bottom: 1px solid var(--line);
   background:
     linear-gradient(100deg, rgba(255, 107, 44, 0.13), transparent 55%),
     #0b1113;
 }
 
-.curve-editor-copy {
-  min-width: 280px;
+.curve-editor-leading-slot {
+  display: flex;
+  flex: 1 1 620px;
+  align-items: center;
+  min-width: 0;
 }
 
-.curve-editor-panel p:not(.guide-kicker) {
-  margin: 0 0 7px;
+.curve-editor-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.curve-editor-copy .guide-kicker {
+  margin-bottom: 4px;
+}
+
+.curve-editor-copy p:not(.guide-kicker) {
+  margin: 0 0 3px;
   color: #b5c0bd;
   font-size: 0.78rem;
+  line-height: 1.35;
 }
 
-.curve-editor-panel output {
+.curve-editor-copy output {
+  display: block;
   color: var(--ice);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 0.68rem;
+  line-height: 1.35;
+}
+
+.curve-heading .curve-editor-copy {
+  width: min(620px, 45vw);
 }
 
 .curve-editor-precision {
   display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -1250,10 +1293,13 @@ input[type="checkbox"] {
 
 .curve-zoom-tools {
   display: grid;
+  flex: 0 1 140px;
   grid-template-columns: 38px 54px 38px;
   align-items: center;
+  align-self: center;
   gap: 5px;
-  min-width: 250px;
+  min-width: 140px;
+  max-width: 140px;
 }
 
 .curve-tool-button {
@@ -1274,24 +1320,32 @@ input[type="checkbox"] {
   font-size: 0.72rem;
 }
 
-.curve-pan-label {
-  grid-column: 1 / 2;
-  color: var(--muted);
-  font-size: 0.62rem;
-  text-transform: uppercase;
+.curve-editor-footer {
+  border-top: 1px solid var(--line);
+  background: #0b1113;
+}
+
+.curve-editor-footer[hidden],
+.curve-scroll-row[hidden] {
+  display: none;
+}
+
+.curve-scroll-row {
+  padding: 14px 22px 4px;
 }
 
 .curve-pan {
-  grid-column: 2 / 4;
+  display: block;
   width: 100%;
   accent-color: var(--orange);
 }
 
 .curve-editor-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 8px;
+  padding: 12px 22px 16px;
 }
 
 .curve-editor-actions .button {
@@ -1388,44 +1442,6 @@ input[type="checkbox"] {
   font-size: 0.72rem;
 }
 
-.curve-editor-open {
-  overflow: hidden;
-}
-
-.curve-panel.is-fullscreen {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  border: 0;
-  background: #060a0c;
-}
-
-.curve-panel.is-fullscreen .curve-heading,
-.curve-panel.is-fullscreen .curve-editor-panel,
-.curve-panel.is-fullscreen .curve-legend {
-  flex: 0 0 auto;
-}
-
-.curve-panel.is-fullscreen .curve-canvas-wrap {
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.curve-panel.is-fullscreen #curveCanvas {
-  flex: 1 1 auto;
-  width: 100%;
-  height: 0;
-  min-height: 380px;
-  aspect-ratio: auto;
-}
-
 .metrics {
   display: grid;
   grid-template-columns: repeat(3, minmax(76px, 1fr));
@@ -1458,7 +1474,9 @@ input[type="checkbox"] {
 
 .preview-frame {
   position: relative;
-  margin: 0 20px;
+  width: calc(100% - 40px);
+  max-width: 900px;
+  margin: 0 auto;
   border: 1px solid var(--line-strong);
   background: #030607;
 }
@@ -1900,6 +1918,50 @@ footer {
   letter-spacing: 0.08em;
 }
 
+@media (min-width: 1280px) {
+  .simulation-stage-layout {
+    grid-template-columns: minmax(520px, 0.95fr) minmax(600px, 1.05fr);
+    align-items: start;
+    gap: 18px;
+    margin: 0 20px 20px;
+  }
+
+  .simulation-stage-layout .preview-frame {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .simulation-stage-layout .lamp-readouts {
+    margin: 0;
+  }
+
+  .simulation-stage-layout .diagnostics {
+    height: 100%;
+    padding: 22px;
+  }
+
+  .simulation-stage-layout .diagnostics .section-heading {
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .simulation-stage-layout .diagnostic-note {
+    max-width: 250px;
+  }
+
+  .simulation-stage-layout .channel-row {
+    grid-template-columns: minmax(120px, 0.75fr) repeat(2, minmax(150px, 1fr));
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .simulation-stage-layout .brightness-lane {
+    grid-template-columns: 64px minmax(42px, 1fr) 42px;
+    gap: 8px;
+  }
+}
+
 @media (max-width: 900px) {
   .page-shell {
     width: min(100% - 24px, var(--page-width));
@@ -1969,6 +2031,16 @@ footer {
     width: 100%;
   }
 
+  .curve-heading-dynamic,
+  .curve-mode-controls {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .curve-heading .curve-editor-copy {
+    width: 100%;
+  }
+
   .curve-view-button {
     flex: 1;
   }
@@ -1978,8 +2050,13 @@ footer {
     flex-direction: column;
   }
 
+  .curve-editor-leading-slot,
+  .curve-zoom-tools {
+    flex: none;
+  }
+
   .curve-editor-actions {
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .mapping-ribbon span {
@@ -2065,7 +2142,8 @@ footer {
   }
 
   .preview-frame {
-    margin: 0 8px;
+    width: calc(100% - 16px);
+    margin: 0 auto;
   }
 
   .input-mode-button {
@@ -2137,7 +2215,11 @@ footer {
   }
 
   .curve-editor-panel {
-    padding: 14px;
+    padding: 10px 14px;
+  }
+
+  .curve-scroll-row {
+    padding-inline: 14px;
   }
 
   .curve-legend {
