@@ -1,0 +1,19 @@
+# macOS metadata
+.DS_Store
+
+# Local dependency and test artifacts
+node_modules/
+coverage/
+*.log
+
+# Python helper caches
+__pycache__/
+*.py[cod]
+
+# Local research, generated previews, and coding experiments
+tmp/
+output/
+
+# Vehicle backups and exports can contain a VIN or other vehicle-specific data.
+*.cod
+*.zip

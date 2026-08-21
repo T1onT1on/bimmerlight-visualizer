@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="645"
+  height="466"
+  viewBox="0 0 645 466"
+  role="img"
+  aria-labelledby="headlight-title headlight-description"
+>
+  <title id="headlight-title">BMW G20 PreLCI left headlight channel map</title>
+  <desc id="headlight-description">Front-view left headlight mirrored from the right headlight with independently animated CH01 to CH05 layers.</desc>
+  <style>
+    .housing,
+    .emitter {
+      paint-order: stroke fill markers;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: miter;
+      stroke-miterlimit: 4;
+    }
+
+    .housing {
+      fill: #000;
+      stroke: #000;
+    }
+
+    .channel {
+      fill: currentColor;
+      stroke: currentColor;
+    }
+  </style>
+
+  <g id="housing" data-role="housing" transform="translate(645 0) scale(-1 1)">
+    <polyline
+      class="housing"
+      points="24.78,0 0,50 26.78,120 54.78,138 179.43,152.35 171.21,124.48 187.93,117.61 213.78,122 229.11,131.87 266.78,159 281.78,167 471.34,176.39 430.9,39.17 24.78,0"
+      transform="matrix(1.0594594594594595,0,0,1.1495670910241738,19.253293918919205,130.46883435096728)"
+    />
+  </g>
+
+  <g id="channel-03" class="channel" data-channel="03" data-light="drl-transition" color="#fffd07" opacity="1" transform="translate(645 0) scale(-1 1)">
+    <polyline
+      id="ch03-outer-drl"
+      class="emitter"
+      points="14,0 0,24 36,93 55,103 148,117 143,107 51,88 16,27 31,1 14,0"
+      transform="matrix(1,0,0,1,45,166)"
+    />
+    <polyline
+      id="ch03-inner-drl"
+      class="emitter"
+      points="17,0 0,28 39,91 60,107 73,112 234,123 226,109 70,97 49,86 25,49 13,28 29,5 17,0"
+      transform="matrix(1,0,0,1,246.875,186)"
+    />
+  </g>
+
+  <g id="channel-01" class="channel" data-channel="01" data-light="low-main" color="#a8efff" opacity="1" transform="translate(645 0) scale(-1 1)">
+    <polyline
+      id="ch01-inner-projector"
+      class="emitter"
+      points="90,3 0,0 12,27 75,27 90,3"
+      transform="matrix(1.0923641974677987,0,0,1.092364197467799,294.17300969493556,216.0323757949356)"
+    />
+    <polyline
+      id="ch01-outer-projector"
+      class="emitter"
+      points="90,3 0,0 12,27 75,27 90,3"
+      transform="matrix(1.0923641974677987,0,0,1.092364197467799,93.0245721449356,199.02846952343384)"
+    />
+  </g>
+
+  <g id="channel-04" class="channel" data-channel="04" data-light="low-dim" color="#2469ff" opacity="1" transform="translate(645 0) scale(-1 1)">
+    <polyline
+      id="ch04-inner-projector"
+      class="emitter"
+      points="11,0 0,28 101,30 86,0 11,0"
+      transform="matrix(1,0,0,1,292.8593751,187.3671876)"
+    />
+    <polyline
+      id="ch04-outer-projector"
+      class="emitter"
+      points="11,0 0,28 101,30 86,0 11,0"
+      transform="matrix(1,0,0,1,91.8710938,170.8710938)"
+    />
+  </g>
+
+  <g id="channel-05" class="channel" data-channel="05" data-light="low-bright" color="#c67aff" opacity="1" transform="translate(645 0) scale(-1 1)">
+    <polyline
+      id="ch05-outer-projector-frame"
+      class="emitter"
+      points="17,0 0,43 19,83 100,85 125,43 103,4 97,9 115,43 97,74 25,73 12,43 23,12 104,0 17,0"
+      transform="matrix(1.0620111631869815,0,0,1.0773915286038118,75.22418321514509,153.28389950835927)"
+    />
+    <polyline
+      id="ch05-outer-projector-cap"
+      class="emitter"
+      points="81,9 0,10 78,0 81,9"
+      transform="matrix(1,0,0,1,103.76171875,155.62109375)"
+    />
+    <polyline
+      id="ch05-inner-projector-frame"
+      class="emitter"
+      points="17,0 0,43 19,83 100,85 125,43 103.92,1.2 98.85,10.87 115,43 97,74 26.85,73 12.92,39.27 23,12 104,0 17,0"
+      transform="matrix(1.0832157095322872,0,0,1.071245710205726,274.1156972723472,171.53702267041146)"
+    />
+    <polyline
+      id="ch05-inner-projector-cap"
+      class="emitter"
+      points="81,11 0,12 79,0 81,11"
+      transform="matrix(1,0,0,1,304.79296875,170.14453125)"
+    />
+  </g>
+
+  <g id="channel-02" class="channel" data-channel="02" data-light="drl-main" color="#ff8a47" opacity="1" transform="translate(645 0) scale(-1 1)">
+    <polyline
+      id="ch02-outer-drl"
+      class="emitter"
+      points="14,0 0,26.56 29.18,90.44 46.47,106.41 146.29,119.56 143,111.26 45.88,95.67 10.88,27 26.74,1 14,0"
+      transform="matrix(1.17272984175344,0,0,1.1727298417534413,26.37552585195047,157.62363427318897)"
+    />
+    <polyline
+      id="ch02-inner-drl"
+      class="emitter"
+      points="16.11,0 0,28.89 38.11,94.57 58.21,111.46 80.14,122.71 236.68,131.93 230.46,120.61 82.5,111.28 65.96,103.86 49.1,90.96 12.11,31.57 31.68,0.54 16.11,0"
+      transform="matrix(1.1201169728625313,0,0,1.120116972862531,228.32328961441107,178.46529148741894)"
+    />
+  </g>
+</svg>

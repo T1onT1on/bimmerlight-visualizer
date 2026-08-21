@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0f12">
+  <title>FLM Light Studio</title>
+  <link rel="stylesheet" href="styles.css?v=20260821-5">
+  <script src="core.js?v=20260821-4" defer></script>
+  <script src="sample-v15.js?v=20260821-5" defer></script>
+  <script src="bimmercode.js?v=20260821-1" defer></script>
+  <script src="app.js?v=20260821-6" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">BMW FLM2 ANIMATION LAB</p>
+        <h1>FLM LIGHT<br>STUDIO</h1>
+      </div>
+      <div class="masthead-note">
+        <span class="signal-dot" aria-hidden="true"></span>
+        <span>逻辑灯组模拟器</span>
+        <small>DATA-ACCURATE / OPTICS-SCHEMATIC</small>
+      </div>
+    </header>
+
+    <main>
+      <section class="input-deck" aria-labelledby="input-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-index">01 / INPUT</p>
+            <h2 id="input-title">载入 FLM2 数据</h2>
+          </div>
+          <label class="profile-field" for="profileSelect">
+            车型映射
+            <select id="profileSelect">
+              <option value="g20-2020-prelci-eu-5az">G20 2020 PreLCI EU / 5AZ Laserlight</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="input-mode-switch" role="tablist" aria-label="字节输入方式">
+          <button id="pasteModeBtn" class="input-mode-button is-active" type="button" role="tab" aria-selected="true" aria-controls="pasteModePanel">
+            <span>01</span>粘贴字节
+          </button>
+          <button id="byteModeBtn" class="input-mode-button" type="button" role="tab" aria-selected="false" aria-controls="byteModePanel">
+            <span>02</span>逐字节输入
+          </button>
+          <button id="humanModeBtn" class="input-mode-button" type="button" role="tab" aria-selected="false" aria-controls="humanModePanel">
+            <span>03</span>人类可读
+          </button>
+        </div>
+
+        <div id="pasteModePanel" class="input-mode-panel" role="tabpanel" aria-labelledby="pasteModeBtn">
+          <div class="import-grid">
+            <div class="template-import">
+              <div class="template-input-heading">
+                <label for="templateInput">完整模板或裸字节</label>
+                <label class="paste-target" for="pasteTarget">
+                  裸字节应用至
+                  <select id="pasteTarget">
+                    <option value="both">左右相同 [43 + 44]</option>
+                    <option value="left">仅车辆左 [43]</option>
+                    <option value="right">仅车辆右 [44]</option>
+                  </select>
+                </label>
+              </div>
+              <textarea id="templateInput" rows="7" spellcheck="false" placeholder="支持 0x01, 0x00... 或 01, 00... 也可粘贴包含左右 FLM2 的完整模板"></textarea>
+              <div class="button-row">
+                <button id="splitTemplateBtn" class="button button-secondary" type="button">读取粘贴内容</button>
+                <button id="loadOriginalBtn" class="button button-ghost" type="button">载入 2020 Original</button>
+                <button id="loadV15Btn" class="button button-ghost" type="button">载入 v15</button>
+                <button id="loadDoubleSwipeFlashBtn" class="button button-ghost" type="button">DoubleSwipe&amp;Flash</button>
+              </div>
+            </div>
+
+            <div class="input-guide">
+              <p class="guide-kicker">自动适应格式</p>
+              <p>接受 <code>0x00</code> 或 <code>00</code>，可使用逗号、空格、换行或分号分隔。完整模板会自动识别左右两个 FLM2。</p>
+              <dl>
+                <div><dt>Staging1</dt><dd>最大 252 Byte</dd></div>
+                <div><dt>Staging2</dt><dd>最大 168 Byte</dd></div>
+                <div><dt>每侧总容量</dt><dd>420 Byte</dd></div>
+                <div><dt>时间单位</dt><dd>Byte × 10ms</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <div id="byteModePanel" class="input-mode-panel byte-mode-panel" role="tabpanel" aria-labelledby="byteModeBtn" hidden>
+          <div class="byte-mode-toolbar">
+            <div class="byte-side-switch" role="tablist" aria-label="FLM2 侧别">
+              <button id="byteLeftBtn" class="byte-side-button is-active" type="button" role="tab" aria-selected="true" aria-controls="byteSideLeft">车辆左 FLM2 [43]</button>
+              <button id="byteRightBtn" class="byte-side-button" type="button" role="tab" aria-selected="false" aria-controls="byteSideRight">车辆右 FLM2 [44]</button>
+            </div>
+            <p><b>420 Byte / 每侧</b>· 当前组数由长度字段决定· 每次增减 1 组会移动 2 Byte· 空白按 <code>00</code></p>
+          </div>
+
+          <div id="byteSideLeft" class="byte-side-panel" role="tabpanel" aria-labelledby="byteLeftBtn">
+            <div id="byteSectionsLeft" class="byte-channel-sections"></div>
+          </div>
+
+          <div id="byteSideRight" class="byte-side-panel" role="tabpanel" aria-labelledby="byteRightBtn" hidden>
+            <div id="byteSectionsRight" class="byte-channel-sections"></div>
+          </div>
+        </div>
+
+        <div id="humanModePanel" class="input-mode-panel human-mode-panel" role="tabpanel" aria-labelledby="humanModeBtn" hidden>
+          <div class="human-mode-toolbar">
+            <div class="human-side-switch" role="tablist" aria-label="人类可读视图侧别">
+              <button id="humanLeftBtn" class="human-side-button is-active" type="button" role="tab" aria-selected="true" aria-controls="humanSideLeft">车辆左 FLM2 [43]</button>
+              <button id="humanRightBtn" class="human-side-button" type="button" role="tab" aria-selected="false" aria-controls="humanSideRight">车辆右 FLM2 [44]</button>
+            </div>
+            <div class="human-toolbar-copy">
+              <p><b>时间输入单位 = 10ms</b>· 单组 0–255 · 例如 <code>50</code> = 500ms · 亮度为目标值 0–100%</p>
+              <button id="refreshHumanBtn" class="button button-ghost" type="button">从当前代码重新翻译</button>
+            </div>
+          </div>
+
+          <div id="humanSideLeft" class="human-side-panel" role="tabpanel" aria-labelledby="humanLeftBtn">
+            <div id="humanSectionsLeft" class="human-channel-sections"></div>
+          </div>
+
+          <div id="humanSideRight" class="human-side-panel" role="tabpanel" aria-labelledby="humanRightBtn" hidden>
+            <div id="humanSectionsRight" class="human-channel-sections"></div>
+          </div>
+
+          <div class="human-apply-row">
+            <p>修改会先校验每侧 420 Byte 容量，再同步生成 Staging1、Staging2、逐字节输入、曲线与动画。</p>
+            <button id="applyHumanBtn" class="button button-primary" type="button">生成十六进制并预览</button>
+          </div>
+        </div>
+
+        <div class="mapping-ribbon" aria-label="G20 PreLCI 实测通道映射">
+          <span class="is-ch01"><b>CH01</b>浅蓝 · 近光主层</span>
+          <span class="is-ch02"><b>CH02</b>橙色 · DRL主层</span>
+          <span class="is-ch03"><b>CH03</b>黄色 · DRL过渡</span>
+          <span class="is-ch04"><b>CH04</b>深蓝 · 近光低增益</span>
+          <span class="is-ch05"><b>CH05</b>紫色 · 近光高增益</span>
+        </div>
+
+          <details class="advanced-inputs">
+          <summary>高级输入 / 四段原始数据</summary>
+          <div class="staging-grid">
+            <fieldset>
+              <legend>FLM2 LEFT [43]</legend>
+              <label for="left1">Staging1_Data</label>
+              <textarea id="left1" rows="5" spellcheck="false"></textarea>
+              <label for="left2">Staging2_Data</label>
+              <textarea id="left2" rows="3" spellcheck="false"></textarea>
+            </fieldset>
+            <fieldset>
+              <legend>FLM2 RIGHT [44]</legend>
+              <label for="right1">Staging1_Data</label>
+              <textarea id="right1" rows="5" spellcheck="false"></textarea>
+              <label for="right2">Staging2_Data</label>
+              <textarea id="right2" rows="3" spellcheck="false"></textarea>
+            </fieldset>
+          </div>
+          <label class="checkbox-line" for="mirrorLeft">
+            <input id="mirrorLeft" type="checkbox" checked>
+            右侧为空时自动复制左侧数据
+          </label>
+        </details>
+
+        <div class="parse-row">
+          <button id="parseBtn" class="button button-primary" type="button">预览曲线和动画</button>
+          <button id="clearBtn" class="button button-ghost" type="button">清空</button>
+          <p id="parseMessage" class="parse-message" role="status"></p>
+        </div>
+      </section>
+
+      <section class="studio" aria-labelledby="preview-title">
+        <div class="section-heading studio-heading">
+          <div>
+            <p class="section-index">02 / SIMULATION</p>
+            <h2 id="preview-title">大灯逻辑预览</h2>
+          </div>
+          <div class="metrics" aria-label="解析指标">
+            <div><span>时长</span><strong id="durationMetric">—</strong></div>
+            <div><span>通道</span><strong id="channelMetric">—</strong></div>
+            <div><span>序列</span><strong id="sequenceMetric">—</strong></div>
+          </div>
+        </div>
+
+        <div id="curvePanel" class="curve-panel">
+          <div class="curve-heading">
+            <div>
+              <p class="guide-kicker">CHANNEL TIMELINE</p>
+              <h3>五通道亮度曲线</h3>
+            </div>
+            <div class="curve-heading-tools">
+              <div class="curve-channel-switch" role="group" aria-label="曲线通道显示">
+                <button class="curve-channel-button is-ch01 is-active" type="button" data-channel="1" aria-pressed="true">CH01</button>
+                <button class="curve-channel-button is-ch02 is-active" type="button" data-channel="2" aria-pressed="true">CH02</button>
+                <button class="curve-channel-button is-ch03 is-active" type="button" data-channel="3" aria-pressed="true">CH03</button>
+                <button class="curve-channel-button is-ch04 is-active" type="button" data-channel="4" aria-pressed="true">CH04</button>
+                <button class="curve-channel-button is-ch05 is-active" type="button" data-channel="5" aria-pressed="true">CH05</button>
+              </div>
+              <div class="curve-view-switch" role="group" aria-label="曲线显示侧别">
+                <button id="viewRightBtn" class="curve-view-button" type="button">仅右大灯 [44]</button>
+                <button id="viewLeftBtn" class="curve-view-button" type="button">仅左大灯 [43]</button>
+                <button id="viewBothBtn" class="curve-view-button is-active" type="button" aria-pressed="true">显示两个大灯</button>
+              </div>
+              <button id="editCurveBtn" class="button button-secondary curve-edit-button" type="button">编辑曲线</button>
+            </div>
+          </div>
+          <div id="curveEditorPanel" class="curve-editor-panel" hidden>
+            <div class="curve-editor-copy">
+              <p class="guide-kicker">CURVE EDITOR</p>
+              <p>拖动节点调整时间与亮度；在线上右键新增节点，在节点上右键删除。保存时自动量化为 1% / 10ms。</p>
+              <output id="curveEditStatus">请选择一个节点开始编辑</output>
+            </div>
+            <div class="curve-editor-precision" aria-label="精确编辑当前控制点">
+              <label>时间 <span><input id="pointTimeInput" type="number" min="0" step="10" disabled> ms</span></label>
+              <label>亮度 <span><input id="pointBrightnessInput" type="number" min="0" max="100" step="1" disabled> %</span></label>
+            </div>
+            <div class="curve-zoom-tools" aria-label="时间轴缩放">
+              <button id="zoomOutBtn" class="curve-tool-button" type="button" aria-label="缩小时间轴">−</button>
+              <button id="zoomFitBtn" class="curve-tool-button curve-zoom-label" type="button">1×</button>
+              <button id="zoomInBtn" class="curve-tool-button" type="button" aria-label="放大时间轴">+</button>
+              <label class="curve-pan-label" for="curvePan">窗口</label>
+              <input id="curvePan" class="curve-pan" type="range" min="0" max="0" step="10" value="0">
+            </div>
+            <div class="curve-editor-actions">
+              <button id="applyCurveBtn" class="button button-primary" type="button">应用并生成代码</button>
+              <button id="saveCurveBtn" class="button button-secondary" type="button">保存曲线</button>
+              <button id="loadCurveBtn" class="button button-ghost" type="button">加载已保存</button>
+              <button id="cancelCurveBtn" class="button button-ghost" type="button">撤销本次编辑</button>
+            </div>
+          </div>
+          <div class="curve-canvas-wrap">
+            <canvas id="curveCanvas" width="1351" height="520" aria-label="五个 Channel 的亮度时间曲线"></canvas>
+            <div class="curve-legend" aria-label="曲线图例">
+              <span class="is-ch01">CH01</span>
+              <span class="is-ch02">CH02</span>
+              <span class="is-ch03">CH03</span>
+              <span class="is-ch04">CH04</span>
+              <span class="is-ch05">CH05</span>
+              <small id="curveSideLegend">实线 LEFT [43] · 虚线 RIGHT [44]</small>
+            </div>
+          </div>
+          <div id="curveContextMenu" class="curve-context-menu" role="menu" hidden>
+            <p id="curveContextLabel"></p>
+            <button id="addCurvePointBtn" type="button" role="menuitem">在线上新增控制点</button>
+            <button id="deleteCurvePointBtn" type="button" role="menuitem">删除此控制点</button>
+          </div>
+        </div>
+
+        <div class="preview-frame">
+          <canvas id="visualizerCanvas" width="1351" height="900" aria-label="BMW G20 迎宾灯逻辑动画预览"></canvas>
+        </div>
+
+        <div class="lamp-readouts" aria-label="当前灯组合成亮度">
+          <div class="lamp-readout">
+            <span>画面左 / 车辆右 [44]</span>
+            <strong>DRL 光导 <output id="rightDrlOutput">0%</output></strong>
+            <strong>方形近光 <output id="rightLowOutput">0%</output></strong>
+          </div>
+          <p>只镜像灯体几何<br>不反转字节时序</p>
+          <div class="lamp-readout is-vehicle-left">
+            <span>画面右 / 车辆左 [43]</span>
+            <strong>DRL 光导 <output id="leftDrlOutput">0%</output></strong>
+            <strong>方形近光 <output id="leftLowOutput">0%</output></strong>
+          </div>
+        </div>
+
+        <div class="transport" aria-label="播放控制">
+          <button id="playBtn" class="transport-button" type="button" aria-label="播放">▶</button>
+          <div class="time-readout"><strong id="currentTime">0.00</strong><span>/</span><span id="totalTime">0.00 s</span></div>
+          <input id="timeline" type="range" min="0" max="1000" value="0" step="1" aria-label="动画时间轴">
+          <label for="speedSelect">速度
+            <select id="speedSelect">
+              <option value="0.25">0.25×</option>
+              <option value="0.5">0.5×</option>
+              <option value="1" selected>1×</option>
+              <option value="2">2×</option>
+            </select>
+          </label>
+          <label class="loop-control" for="loopToggle"><input id="loopToggle" type="checkbox" checked>循环</label>
+        </div>
+      </section>
+
+      <section class="diagnostics" aria-labelledby="diagnostics-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-index">03 / CHANNELS</p>
+            <h2 id="diagnostics-title">通道诊断</h2>
+          </div>
+          <p class="diagnostic-note">彩色 SVG 图层透明度直接使用原始百分比；下方 DRL/近光读数仍显示合成结果。</p>
+        </div>
+        <div id="channelList" class="channel-list"></div>
+        <div id="warningList" class="warning-list" aria-live="polite"></div>
+      </section>
+
+      <section class="bimmercode-deck" aria-labelledby="bimmercode-title">
+        <div class="section-heading bimmercode-heading">
+          <div>
+            <p class="section-index">04 / BIMMERCODE BACKUP</p>
+            <h2 id="bimmercode-title">生成可恢复备份</h2>
+          </div>
+          <p>把当前左右动画写入你车辆自己的 FLM2 备份外壳。文件仅在此浏览器本地处理，不会上传。</p>
+        </div>
+
+        <div class="bimmercode-workbench">
+          <div class="backup-import-panel">
+            <p class="guide-kicker">SOURCE BACKUPS</p>
+            <h3>载入左右两个 .cod</h3>
+            <p>一次选择两个文件即可，系统会读取 ECU 地址并自动分配车辆左 <code>0x43</code> 与车辆右 <code>0x44</code>。</p>
+            <div class="backup-import-actions">
+              <label class="button button-secondary backup-file-picker" for="bimmerCodeFileInput">
+                选择两个备份
+                <input id="bimmerCodeFileInput" type="file" accept=".cod,application/octet-stream" multiple>
+              </label>
+              <button id="bimmerCodeResetBtn" class="button button-ghost" type="button">移除备份</button>
+            </div>
+          </div>
+
+          <div class="backup-pair" aria-label="已识别的左右 FLM2 备份">
+            <article id="bimmerCodeLeftCard" class="backup-file-card">
+              <span class="backup-side">LEFT · 0x43</span>
+              <strong id="bimmerCodeLeftName">尚未载入</strong>
+              <dl>
+                <div><dt>ECU</dt><dd id="bimmerCodeLeftIdentifier">—</dd></div>
+                <div><dt>VIN</dt><dd id="bimmerCodeLeftVin">—</dd></div>
+                <div><dt>CAFD</dt><dd id="bimmerCodeLeftCafd">—</dd></div>
+              </dl>
+            </article>
+            <article id="bimmerCodeRightCard" class="backup-file-card">
+              <span class="backup-side">RIGHT · 0x44</span>
+              <strong id="bimmerCodeRightName">尚未载入</strong>
+              <dl>
+                <div><dt>ECU</dt><dd id="bimmerCodeRightIdentifier">—</dd></div>
+                <div><dt>VIN</dt><dd id="bimmerCodeRightVin">—</dd></div>
+                <div><dt>CAFD</dt><dd id="bimmerCodeRightCafd">—</dd></div>
+              </dl>
+            </article>
+          </div>
+        </div>
+
+        <div class="backup-export-row">
+          <div class="backup-safety-note">
+            <strong>写入范围锁定</strong>
+            <p>只替换 <code>0x3009</code> Staging1 与 <code>0x300A</code> Staging2；VIN、CAFD 和其余块保持原样。<code>0x37F1</code> 不会重算，请保留未经修改的原始备份。</p>
+          </div>
+          <button id="bimmerCodeExportBtn" class="button button-primary backup-export-button" type="button" disabled>生成并下载左右备份 ZIP</button>
+        </div>
+        <p id="bimmerCodeStatus" class="backup-status" role="status" aria-live="polite">请先载入同一辆车的左右 FLM2 备份。</p>
+      </section>
+
+      <section class="export-deck" aria-labelledby="export-title">
+        <div>
+          <p class="section-index">05 / MEDIA EXPORT</p>
+          <h2 id="export-title">导出演示</h2>
+          <p>PNG 立即保存当前帧；WebM 将按 1× 速度录制由输入字节生成的完整动画。</p>
+        </div>
+        <div class="export-actions">
+          <button id="pngBtn" class="button button-secondary" type="button">保存当前帧 PNG</button>
+          <button id="webmBtn" class="button button-primary" type="button">录制 WebM</button>
+        </div>
+        <p id="exportStatus" class="export-status" role="status"></p>
+      </section>
+    </main>
+
+    <footer>
+      <span>FLM LIGHT STUDIO / PRELCI 01</span>
+      <span>不连接车辆，不执行编码写入</span>
+    </footer>
+  </div>
+</body>
+</html>
