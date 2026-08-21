@@ -4,11 +4,11 @@
   // Staging sequence identifiers are not LMxx hardware-function IDs. These
   // five roles were identified directly on a G20 PreLCI EU Laserlight car.
   const CHANNELS = {
-    0x01: { code: "STG-01", name: "近光主/高亮层", kind: "low", color: "#a8efff", verified: true },
-    0x02: { code: "STG-02", name: "DRL 主增亮层", kind: "drl", color: "#ff8a47", verified: true },
-    0x03: { code: "STG-03", name: "DRL 过渡层", kind: "drl", color: "#fffd07", verified: true },
-    0x04: { code: "STG-04", name: "近光低增益层", kind: "low", color: "#2469ff", verified: true },
-    0x05: { code: "STG-05", name: "近光高增益层", kind: "low", color: "#c67aff", verified: true },
+    0x01: { code: "近光主灯", name: "高亮度", kind: "low", color: "#a8efff", verified: true },
+    0x02: { code: "日行灯主灯", name: "高亮度", kind: "drl", color: "#ff8a47", verified: true },
+    0x03: { code: "日行灯过渡灯", name: "低亮度", kind: "drl", color: "#fffd07", verified: true },
+    0x04: { code: "近光过渡灯", name: "低亮", kind: "low", color: "#2469ff", verified: true },
+    0x05: { code: "点缀灯", name: "激光蓝灯带&近光", kind: "low", color: "#c67aff", verified: true },
   };
 
   const G20_PRELCI_PROFILE = {
