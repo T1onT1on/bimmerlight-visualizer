@@ -1,0 +1,41 @@
+{
+  "id": "flm_probe",
+  "title": "FLM Probe",
+  "description": "Read-only look into the two front light modules (FLM2): variant, LED channel map, channel levels, light functions, welcome-light data, and a recording of every channel while the welcome light runs",
+  "version": "0.2.0",
+  "vendor": "custom",
+  "loggingId": "OAB0",
+  "iconGlyph": "FLM",
+  "signals": {
+    "com.harman.infotainment.systemfunctions.tasu.tasu.InternalTasu": {
+      "_instances": "SystemFunctionsInternalTasuInst1",
+      "_methods": ["sendTasuRequest"],
+      "_broadcasts": ["sendTasuResponse"]
+    }
+  },
+  "screens": [
+    {
+      "name": "MAIN",
+      "kind": "canvas",
+      "title": "FLM Probe",
+      "buttons": [
+        ["BTN_SCAN", "Read"],
+        ["BTN_PAGE", "Next page"],
+        ["BTN_REC", "Record"],
+        ["BTN_SETTINGS", "Settings"]
+      ]
+    }
+  ],
+  "settings": [
+    {"key": "readOnOpen", "label": "Read when opened", "type": "bool", "default": false},
+    {"key": "recordSeconds", "label": "Recording length", "type": "number", "unit": "s", "default": 60, "steps": [30, 60, 90, 120]},
+    {"key": "theme", "label": "Colour theme", "type": "choice", "default": "m_tricolour",
+     "options": [["m_red", "M Red"], ["m_tricolour", "M Tricolour"], ["ice", "Ice White"], ["amber", "Night Amber"]]},
+    {"key": "layout", "label": "Screen layout", "type": "choice", "default": "full",
+     "options": [["full", "Full screen"], ["standard", "Standard"]]},
+    {"key": "renderer", "label": "Renderer", "type": "choice", "default": "auto",
+     "options": [["auto", "GPU 60 fps (default)"], ["software", "Software"]]},
+    {"key": "demo", "label": "Demo data", "type": "choice", "default": "auto",
+     "options": [["auto", "Auto"], ["on", "Always"], ["off", "Never"]]}
+  ]
+}
