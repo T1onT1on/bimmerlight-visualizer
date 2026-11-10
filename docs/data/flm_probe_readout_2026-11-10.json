@@ -1,0 +1,1625 @@
+{
+  "at": "2026-11-10T07:35:35.224Z",
+  "demo": false,
+  "source": "FLM02 rev 2.200 layouts",
+  "sides": {
+    "left": {
+      "addr": "0x43",
+      "label": "Left [43]",
+      "reads": {
+        "sgbd": {
+          "did": "F150",
+          "status": "ok",
+          "raw": "0F 26 C0",
+          "length": 3,
+          "value": {
+            "index": "0F26C0",
+            "name": "FLM02_L",
+            "layoutKnown": true
+          }
+        },
+        "session": {
+          "did": "F186",
+          "status": "ok",
+          "raw": "01",
+          "length": 1,
+          "value": {
+            "code": 1,
+            "text": "default"
+          }
+        },
+        "voltage": {
+          "did": "D9BC",
+          "status": "ok",
+          "raw": "73",
+          "length": 1,
+          "value": {
+            "volts": 11.5
+          }
+        },
+        "variant": {
+          "did": "DA71",
+          "status": "ok",
+          "raw": "46 3C 00 00 00 25 5F CF FF F7 FF 01 00",
+          "length": 13,
+          "value": {
+            "vehicle": "G20",
+            "lci": false,
+            "maker": "Automotive Lighting",
+            "rightHandDrive": true,
+            "sa": "5AZ Laserlight",
+            "country": "ECE",
+            "version": "00",
+            "ecuVariant": "00 00 25 5F CF FF F7 FF",
+            "valid": true,
+            "site": "Kronach"
+          }
+        },
+        "ledMap": {
+          "did": "D9FC",
+          "status": "ok",
+          "raw": "02 06 07 08 02 04 06 07 08 09 0A 0B 00 00 05 06 0C 00 01 00 0B 05 00 02 01 02 03 02 04 01 02 03 06 07 0F 00 00 01 01 01 00 05 00 0F 01 00 0D 0E 0D 0C 0D 0B 0E 0D 0C 09 08 00 00 00 0D 0E 0E 00 0E 00 00 0D 00",
+          "length": 69,
+          "value": [
+            {
+              "lamp": "Low beam 1",
+              "ledRaw": 2,
+              "led": 0.2,
+              "binning": 2,
+              "ntc": 13
+            },
+            {
+              "lamp": "Low beam 2",
+              "ledRaw": 6,
+              "led": 0.6,
+              "binning": 1,
+              "ntc": 14
+            },
+            {
+              "lamp": "Low beam 3",
+              "ledRaw": 7,
+              "led": 0.7,
+              "binning": 2,
+              "ntc": 13
+            },
+            {
+              "lamp": "Low beam 4",
+              "ledRaw": 8,
+              "led": 0.8,
+              "binning": 3,
+              "ntc": 12
+            },
+            {
+              "lamp": "High beam 1",
+              "ledRaw": 2,
+              "led": 0.2,
+              "binning": 2,
+              "ntc": 13
+            },
+            {
+              "lamp": "High beam 2",
+              "ledRaw": 4,
+              "led": 0.4,
+              "binning": 4,
+              "ntc": 11
+            },
+            {
+              "lamp": "High beam 3",
+              "ledRaw": 6,
+              "led": 0.6,
+              "binning": 1,
+              "ntc": 14
+            },
+            {
+              "lamp": "High beam 4",
+              "ledRaw": 7,
+              "led": 0.7,
+              "binning": 2,
+              "ntc": 13
+            },
+            {
+              "lamp": "High beam 5",
+              "ledRaw": 8,
+              "led": 0.8,
+              "binning": 3,
+              "ntc": 12
+            },
+            {
+              "lamp": "High beam 6",
+              "ledRaw": 9,
+              "led": 0.9,
+              "binning": 6,
+              "ntc": 9
+            },
+            {
+              "lamp": "High beam 7",
+              "ledRaw": 10,
+              "led": 1,
+              "binning": 7,
+              "ntc": 8
+            },
+            {
+              "lamp": "High beam 8",
+              "ledRaw": 11,
+              "led": 1.1,
+              "binning": 15,
+              "ntc": 0
+            },
+            {
+              "lamp": "High beam 9",
+              "ledRaw": 0,
+              "led": 0,
+              "binning": 0,
+              "ntc": 0
+            },
+            {
+              "lamp": "High beam 10",
+              "ledRaw": 0,
+              "led": 0,
+              "binning": 0,
+              "ntc": 0
+            },
+            {
+              "lamp": "DRL / position 1",
+              "ledRaw": 5,
+              "led": 0.5,
+              "binning": 1,
+              "ntc": 13
+            },
+            {
+              "lamp": "DRL / position 2",
+              "ledRaw": 6,
+              "led": 0.6,
+              "binning": 1,
+              "ntc": 14
+            },
+            {
+              "lamp": "DRL / position 3",
+              "ledRaw": 12,
+              "led": 1.2,
+              "binning": 1,
+              "ntc": 14
+            },
+            {
+              "lamp": "DRL / position 4",
+              "ledRaw": 0,
+              "led": 0,
+              "binning": 0,
+              "ntc": 0
+            },
+            {
+              "lamp": "Turn signal 1",
+              "ledRaw": 1,
+              "led": 0.1,
+              "binning": 5,
+              "ntc": 14
+            },
+            {
+              "lamp": "Side marker 1",
+              "ledRaw": 0,
+              "led": 0,
+              "binning": 0,
+              "ntc": 0
+            },
+            {
+              "lamp": "Laser 1",
+              "ledRaw": 11,
+              "led": 1.1,
+              "binning": 15,
+              "ntc": 0
+            },
+            {
+              "lamp": "Laser accent 1",
+              "ledRaw": 5,
+              "led": 0.5,
+              "binning": 1,
+              "ntc": 13
+            },
+            {
+              "lamp": "Laser accent 2",
+              "ledRaw": 0,
+              "led": 0,
+              "binning": 0,
+              "ntc": 0
+            }
+          ]
+        },
+        "channels": {
+          "did": "D6DB",
+          "status": "ok",
+          "raw": "00 00 00 00 00 50 03 8E 09 01 00 00 00 00 00 00 00 00 01 00 0B 02 E4 13 01 1F 02 E4 0C 01 64 03 8E 09 01 00 00 00 00 00 14 03 E8 06 01 64 03 E8 09 01 00 00 00 00 00 1F 02 E4 13 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
+          "length": 75,
+          "value": [
+            {
+              "channel": 1,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 0,
+              "phase": 0
+            },
+            {
+              "channel": 2,
+              "pwm": 80,
+              "currentMa": 910,
+              "volts": 9,
+              "phase": 1
+            },
+            {
+              "channel": 3,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 0,
+              "phase": 0
+            },
+            {
+              "channel": 4,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 1,
+              "phase": 0
+            },
+            {
+              "channel": 5,
+              "pwm": 11,
+              "currentMa": 740,
+              "volts": 19,
+              "phase": 1
+            },
+            {
+              "channel": 6,
+              "pwm": 31,
+              "currentMa": 740,
+              "volts": 12,
+              "phase": 1
+            },
+            {
+              "channel": 7,
+              "pwm": 100,
+              "currentMa": 910,
+              "volts": 9,
+              "phase": 1
+            },
+            {
+              "channel": 8,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 0,
+              "phase": 0
+            },
+            {
+              "channel": 9,
+              "pwm": 20,
+              "currentMa": 1000,
+              "volts": 6,
+              "phase": 1
+            },
+            {
+              "channel": 10,
+              "pwm": 100,
+              "currentMa": 1000,
+              "volts": 9,
+              "phase": 1
+            },
+            {
+              "channel": 11,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 0,
+              "phase": 0
+            },
+            {
+              "channel": 12,
+              "pwm": 31,
+              "currentMa": 740,
+              "volts": 19,
+              "phase": 1
+            },
+            {
+              "channel": 13,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 0,
+              "phase": 0
+            },
+            {
+              "channel": 14,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 0,
+              "phase": 0
+            },
+            {
+              "channel": 15,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 0,
+              "phase": 0
+            }
+          ]
+        },
+        "functions": {
+          "did": "D7A7",
+          "status": "ok",
+          "raw": "09 01 01 01 01 03 02 01 03 01 01 00 03 01 01 01 01 01 03 02 01 01 00 05 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF",
+          "length": 48,
+          "value": [
+            {
+              "side": "L",
+              "group": 1,
+              "code": "IDC",
+              "name": "Turn signal",
+              "value": 9
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "FMH",
+              "name": "Follow me home",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "REMLI",
+              "name": "Remote light",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "SPFLS",
+              "name": "Special flashing",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "DRL",
+              "name": "DRL",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "LDSTR_LOWB",
+              "name": "Low beam distribution",
+              "value": 3
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "DIPB",
+              "name": "Low beam",
+              "value": 2
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "PLI",
+              "name": "Parking light",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "POLI",
+              "name": "Position light",
+              "value": 3
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "MAB",
+              "name": "High beam",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "WELL",
+              "name": "Welcome light",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "BRIGLEV",
+              "name": "Brightness",
+              "value": 0
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "ALIV",
+              "name": "Alive counter",
+              "value": 3
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "CORNL",
+              "name": "Cornering light",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "FMH",
+              "name": "Follow me home",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "REMLI",
+              "name": "Remote light",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "SPFLS",
+              "name": "Special flashing",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "DRL",
+              "name": "DRL",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "LDSTR_LOWB",
+              "name": "Low beam distribution",
+              "value": 3
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "DIPB",
+              "name": "Low beam",
+              "value": 2
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "MAB",
+              "name": "High beam",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "WELL",
+              "name": "Welcome light",
+              "value": 1
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "BRIGLEV",
+              "name": "Brightness",
+              "value": 0
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "ALIV",
+              "name": "Alive counter",
+              "value": 5
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "IDC",
+              "name": "Turn signal",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "FMH",
+              "name": "Follow me home",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "REMLI",
+              "name": "Remote light",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "SPFLS",
+              "name": "Special flashing",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "DRL",
+              "name": "DRL",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "LDSTR_LOWB",
+              "name": "Low beam distribution",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "DIPB",
+              "name": "Low beam",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "PLI",
+              "name": "Parking light",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "POLI",
+              "name": "Position light",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "MAB",
+              "name": "High beam",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "WELL",
+              "name": "Welcome light",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "BRIGLEV",
+              "name": "Brightness",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "ALIV",
+              "name": "Alive counter",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "CORNL",
+              "name": "Cornering light",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "FMH",
+              "name": "Follow me home",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "REMLI",
+              "name": "Remote light",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "SPFLS",
+              "name": "Special flashing",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "DRL",
+              "name": "DRL",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "LDSTR_LOWB",
+              "name": "Low beam distribution",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "DIPB",
+              "name": "Low beam",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "MAB",
+              "name": "High beam",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "WELL",
+              "name": "Welcome light",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "BRIGLEV",
+              "name": "Brightness",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "ALIV",
+              "name": "Alive counter",
+              "value": 255
+            }
+          ]
+        },
+        "staging1": {
+          "did": "3009",
+          "status": "ok",
+          "raw": "01 00 0F 19 00 28 00 3C 00 3C 00 3C 00 3F 64 32 64 32 64 32 64 32 64 32 64 32 64 32 64 32 32 32 00 02 00 0B 5A 00 21 1E 05 1E 03 64 03 1E 0D 1E 03 64 03 1E 0A 1E 21 64 4B 1E 03 00 0B 5A 00 21 1E 08 1E 03 64 03 1E 08 1E 03 64 03 1E 0D 1E 21 64 4B 1E 04 00 0B 2D 1E 14 1E 08 1E 06 1E 09 5F 03 62 03 64 03 62 02 60 53 00 03 00 05 00 0A 2D 1E 23 1E 06 1E 09 5F 03 62 03 64 03 62 02 60 4B 00 03 00 06 00 03 41 00 32 43 80 43 07 00 03 01 43 64 43 96 00 08 00 0B 01 00 21 1E 05 1E 03 64 03 1E 0D 1E 03 64 03 1E 0A 1E 21 64 4B 1E 09 00 0B 01 00 21 1E 08 1E 03 64 03 1E 08 1E 03 64 03 1E 0D 1E 21 64 4B 1E 0A 00 03 01 00 32 43 80 43 0B 00 02 01 00 05 64 0C 00 0B 5A 00 21 1E 03 1E 03 64 03 1E 12 1E 03 64 03 1E 08 1E 21 64 4B 1E 0D 00 0A 5A 00 21 1E 03 64 03 1E 17",
+          "length": 252
+        },
+        "staging2": {
+          "did": "300A",
+          "status": "ok",
+          "raw": "1E 03 64 03 1E 05 1E 21 64 4B 1E 0E 00 0B 01 00 21 1E 03 1E 03 64 03 1E 12 1E 03 64 03 1E 08 1E 21 64 4B 1E 0F 00 0A 01 00 21 1E 03 64 03 1E 17 1E 03 64 03 1E 05 1E 21 64 4B 1E 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
+          "length": 168
+        }
+      },
+      "staging": {
+        "lengths": [
+          252,
+          168
+        ],
+        "sha256": "1ae3a6388119097107529a7c62074ce47575cde35b2fff7e4c8041c2d11759d9",
+        "tracks": [
+          {
+            "id": "01",
+            "pairs": 15,
+            "units": 758,
+            "finalBrightness": 0,
+            "offset": 0
+          },
+          {
+            "id": "02",
+            "pairs": 11,
+            "units": 271,
+            "finalBrightness": 30,
+            "offset": 33
+          },
+          {
+            "id": "03",
+            "pairs": 11,
+            "units": 272,
+            "finalBrightness": 30,
+            "offset": 58
+          },
+          {
+            "id": "04",
+            "pairs": 11,
+            "units": 185,
+            "finalBrightness": 0,
+            "offset": 83
+          },
+          {
+            "id": "05",
+            "pairs": 10,
+            "units": 184,
+            "finalBrightness": 0,
+            "offset": 108
+          },
+          {
+            "id": "06",
+            "pairs": 3,
+            "units": 243,
+            "finalBrightness": 67,
+            "offset": 131
+          },
+          {
+            "id": "07",
+            "pairs": 3,
+            "units": 251,
+            "finalBrightness": 0,
+            "offset": 140
+          },
+          {
+            "id": "08",
+            "pairs": 11,
+            "units": 182,
+            "finalBrightness": 30,
+            "offset": 149
+          },
+          {
+            "id": "09",
+            "pairs": 11,
+            "units": 183,
+            "finalBrightness": 30,
+            "offset": 174
+          },
+          {
+            "id": "0A",
+            "pairs": 3,
+            "units": 179,
+            "finalBrightness": 67,
+            "offset": 199
+          },
+          {
+            "id": "0B",
+            "pairs": 2,
+            "units": 6,
+            "finalBrightness": 100,
+            "offset": 208
+          },
+          {
+            "id": "0C",
+            "pairs": 11,
+            "units": 272,
+            "finalBrightness": 30,
+            "offset": 215
+          },
+          {
+            "id": "0D",
+            "pairs": 10,
+            "units": 271,
+            "finalBrightness": 30,
+            "offset": 240
+          },
+          {
+            "id": "0E",
+            "pairs": 11,
+            "units": 183,
+            "finalBrightness": 30,
+            "offset": 263
+          },
+          {
+            "id": "0F",
+            "pairs": 10,
+            "units": 182,
+            "finalBrightness": 30,
+            "offset": 288
+          }
+        ],
+        "used": 314,
+        "ended": true,
+        "error": null
+      }
+    },
+    "right": {
+      "addr": "0x44",
+      "label": "Right [44]",
+      "reads": {
+        "sgbd": {
+          "did": "F150",
+          "status": "ok",
+          "raw": "0F 26 D0",
+          "length": 3,
+          "value": {
+            "index": "0F26D0",
+            "name": "FLM02_R",
+            "layoutKnown": true
+          }
+        },
+        "session": {
+          "did": "F186",
+          "status": "ok",
+          "raw": "01",
+          "length": 1,
+          "value": {
+            "code": 1,
+            "text": "default"
+          }
+        },
+        "voltage": {
+          "did": "D9BC",
+          "status": "ok",
+          "raw": "74",
+          "length": 1,
+          "value": {
+            "volts": 11.6
+          }
+        },
+        "variant": {
+          "did": "DA71",
+          "status": "ok",
+          "raw": "46 3C 00 00 00 25 5F CF FF F7 FF 01 00",
+          "length": 13,
+          "value": {
+            "vehicle": "G20",
+            "lci": false,
+            "maker": "Automotive Lighting",
+            "rightHandDrive": true,
+            "sa": "5AZ Laserlight",
+            "country": "ECE",
+            "version": "00",
+            "ecuVariant": "00 00 25 5F CF FF F7 FF",
+            "valid": true,
+            "site": "Kronach"
+          }
+        },
+        "ledMap": {
+          "did": "D9FC",
+          "status": "ok",
+          "raw": "02 06 07 08 02 04 06 07 08 09 0A 0B 00 00 05 06 0C 00 01 00 0B 05 00 02 01 02 03 02 04 01 02 03 06 07 0F 00 00 01 01 01 00 05 00 0F 01 00 0D 0E 0D 0C 0D 0B 0E 0D 0C 09 08 00 00 00 0D 0E 0E 00 0E 00 00 0D 00",
+          "length": 69,
+          "value": [
+            {
+              "lamp": "Low beam 1",
+              "ledRaw": 2,
+              "led": 0.2,
+              "binning": 2,
+              "ntc": 13
+            },
+            {
+              "lamp": "Low beam 2",
+              "ledRaw": 6,
+              "led": 0.6,
+              "binning": 1,
+              "ntc": 14
+            },
+            {
+              "lamp": "Low beam 3",
+              "ledRaw": 7,
+              "led": 0.7,
+              "binning": 2,
+              "ntc": 13
+            },
+            {
+              "lamp": "Low beam 4",
+              "ledRaw": 8,
+              "led": 0.8,
+              "binning": 3,
+              "ntc": 12
+            },
+            {
+              "lamp": "High beam 1",
+              "ledRaw": 2,
+              "led": 0.2,
+              "binning": 2,
+              "ntc": 13
+            },
+            {
+              "lamp": "High beam 2",
+              "ledRaw": 4,
+              "led": 0.4,
+              "binning": 4,
+              "ntc": 11
+            },
+            {
+              "lamp": "High beam 3",
+              "ledRaw": 6,
+              "led": 0.6,
+              "binning": 1,
+              "ntc": 14
+            },
+            {
+              "lamp": "High beam 4",
+              "ledRaw": 7,
+              "led": 0.7,
+              "binning": 2,
+              "ntc": 13
+            },
+            {
+              "lamp": "High beam 5",
+              "ledRaw": 8,
+              "led": 0.8,
+              "binning": 3,
+              "ntc": 12
+            },
+            {
+              "lamp": "High beam 6",
+              "ledRaw": 9,
+              "led": 0.9,
+              "binning": 6,
+              "ntc": 9
+            },
+            {
+              "lamp": "High beam 7",
+              "ledRaw": 10,
+              "led": 1,
+              "binning": 7,
+              "ntc": 8
+            },
+            {
+              "lamp": "High beam 8",
+              "ledRaw": 11,
+              "led": 1.1,
+              "binning": 15,
+              "ntc": 0
+            },
+            {
+              "lamp": "High beam 9",
+              "ledRaw": 0,
+              "led": 0,
+              "binning": 0,
+              "ntc": 0
+            },
+            {
+              "lamp": "High beam 10",
+              "ledRaw": 0,
+              "led": 0,
+              "binning": 0,
+              "ntc": 0
+            },
+            {
+              "lamp": "DRL / position 1",
+              "ledRaw": 5,
+              "led": 0.5,
+              "binning": 1,
+              "ntc": 13
+            },
+            {
+              "lamp": "DRL / position 2",
+              "ledRaw": 6,
+              "led": 0.6,
+              "binning": 1,
+              "ntc": 14
+            },
+            {
+              "lamp": "DRL / position 3",
+              "ledRaw": 12,
+              "led": 1.2,
+              "binning": 1,
+              "ntc": 14
+            },
+            {
+              "lamp": "DRL / position 4",
+              "ledRaw": 0,
+              "led": 0,
+              "binning": 0,
+              "ntc": 0
+            },
+            {
+              "lamp": "Turn signal 1",
+              "ledRaw": 1,
+              "led": 0.1,
+              "binning": 5,
+              "ntc": 14
+            },
+            {
+              "lamp": "Side marker 1",
+              "ledRaw": 0,
+              "led": 0,
+              "binning": 0,
+              "ntc": 0
+            },
+            {
+              "lamp": "Laser 1",
+              "ledRaw": 11,
+              "led": 1.1,
+              "binning": 15,
+              "ntc": 0
+            },
+            {
+              "lamp": "Laser accent 1",
+              "ledRaw": 5,
+              "led": 0.5,
+              "binning": 1,
+              "ntc": 13
+            },
+            {
+              "lamp": "Laser accent 2",
+              "ledRaw": 0,
+              "led": 0,
+              "binning": 0,
+              "ntc": 0
+            }
+          ]
+        },
+        "channels": {
+          "did": "D6DB",
+          "status": "ok",
+          "raw": "00 00 00 01 00 50 03 8E 09 01 00 00 00 01 00 00 00 00 01 00 0B 02 E4 13 01 1F 02 E4 0C 01 64 03 8E 09 01 00 00 00 01 00 14 03 E8 07 01 28 03 E8 0A 01 00 00 00 00 00 1F 02 E4 13 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
+          "length": 75,
+          "value": [
+            {
+              "channel": 1,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 1,
+              "phase": 0
+            },
+            {
+              "channel": 2,
+              "pwm": 80,
+              "currentMa": 910,
+              "volts": 9,
+              "phase": 1
+            },
+            {
+              "channel": 3,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 1,
+              "phase": 0
+            },
+            {
+              "channel": 4,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 1,
+              "phase": 0
+            },
+            {
+              "channel": 5,
+              "pwm": 11,
+              "currentMa": 740,
+              "volts": 19,
+              "phase": 1
+            },
+            {
+              "channel": 6,
+              "pwm": 31,
+              "currentMa": 740,
+              "volts": 12,
+              "phase": 1
+            },
+            {
+              "channel": 7,
+              "pwm": 100,
+              "currentMa": 910,
+              "volts": 9,
+              "phase": 1
+            },
+            {
+              "channel": 8,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 1,
+              "phase": 0
+            },
+            {
+              "channel": 9,
+              "pwm": 20,
+              "currentMa": 1000,
+              "volts": 7,
+              "phase": 1
+            },
+            {
+              "channel": 10,
+              "pwm": 40,
+              "currentMa": 1000,
+              "volts": 10,
+              "phase": 1
+            },
+            {
+              "channel": 11,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 0,
+              "phase": 0
+            },
+            {
+              "channel": 12,
+              "pwm": 31,
+              "currentMa": 740,
+              "volts": 19,
+              "phase": 1
+            },
+            {
+              "channel": 13,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 0,
+              "phase": 0
+            },
+            {
+              "channel": 14,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 0,
+              "phase": 0
+            },
+            {
+              "channel": 15,
+              "pwm": 0,
+              "currentMa": 0,
+              "volts": 0,
+              "phase": 0
+            }
+          ]
+        },
+        "functions": {
+          "did": "D7A7",
+          "status": "ok",
+          "raw": "FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF 09 01 01 01 01 03 02 01 03 01 01 00 03 01 01 01 01 01 03 02 01 01 00 05",
+          "length": 48,
+          "value": [
+            {
+              "side": "L",
+              "group": 1,
+              "code": "IDC",
+              "name": "Turn signal",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "FMH",
+              "name": "Follow me home",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "REMLI",
+              "name": "Remote light",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "SPFLS",
+              "name": "Special flashing",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "DRL",
+              "name": "DRL",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "LDSTR_LOWB",
+              "name": "Low beam distribution",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "DIPB",
+              "name": "Low beam",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "PLI",
+              "name": "Parking light",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "POLI",
+              "name": "Position light",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "MAB",
+              "name": "High beam",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "WELL",
+              "name": "Welcome light",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "BRIGLEV",
+              "name": "Brightness",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 1,
+              "code": "ALIV",
+              "name": "Alive counter",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "CORNL",
+              "name": "Cornering light",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "FMH",
+              "name": "Follow me home",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "REMLI",
+              "name": "Remote light",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "SPFLS",
+              "name": "Special flashing",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "DRL",
+              "name": "DRL",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "LDSTR_LOWB",
+              "name": "Low beam distribution",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "DIPB",
+              "name": "Low beam",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "MAB",
+              "name": "High beam",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "WELL",
+              "name": "Welcome light",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "BRIGLEV",
+              "name": "Brightness",
+              "value": 255
+            },
+            {
+              "side": "L",
+              "group": 2,
+              "code": "ALIV",
+              "name": "Alive counter",
+              "value": 255
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "IDC",
+              "name": "Turn signal",
+              "value": 9
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "FMH",
+              "name": "Follow me home",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "REMLI",
+              "name": "Remote light",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "SPFLS",
+              "name": "Special flashing",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "DRL",
+              "name": "DRL",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "LDSTR_LOWB",
+              "name": "Low beam distribution",
+              "value": 3
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "DIPB",
+              "name": "Low beam",
+              "value": 2
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "PLI",
+              "name": "Parking light",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "POLI",
+              "name": "Position light",
+              "value": 3
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "MAB",
+              "name": "High beam",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "WELL",
+              "name": "Welcome light",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "BRIGLEV",
+              "name": "Brightness",
+              "value": 0
+            },
+            {
+              "side": "R",
+              "group": 1,
+              "code": "ALIV",
+              "name": "Alive counter",
+              "value": 3
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "CORNL",
+              "name": "Cornering light",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "FMH",
+              "name": "Follow me home",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "REMLI",
+              "name": "Remote light",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "SPFLS",
+              "name": "Special flashing",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "DRL",
+              "name": "DRL",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "LDSTR_LOWB",
+              "name": "Low beam distribution",
+              "value": 3
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "DIPB",
+              "name": "Low beam",
+              "value": 2
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "MAB",
+              "name": "High beam",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "WELL",
+              "name": "Welcome light",
+              "value": 1
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "BRIGLEV",
+              "name": "Brightness",
+              "value": 0
+            },
+            {
+              "side": "R",
+              "group": 2,
+              "code": "ALIV",
+              "name": "Alive counter",
+              "value": 5
+            }
+          ]
+        },
+        "staging1": {
+          "did": "3009",
+          "status": "ok",
+          "raw": "01 00 0F 19 00 28 00 3C 00 3C 00 3C 00 3F 64 32 64 32 64 32 64 32 64 32 64 32 64 32 64 32 32 32 00 02 00 0B 5A 00 21 1E 05 1E 03 64 03 1E 0D 1E 03 64 03 1E 0A 1E 21 64 4B 1E 03 00 0B 5A 00 21 1E 08 1E 03 64 03 1E 08 1E 03 64 03 1E 0D 1E 21 64 4B 1E 04 00 0B 2D 1E 14 1E 08 1E 06 1E 09 5F 03 62 03 64 03 62 02 60 53 00 03 00 05 00 0A 2D 1E 23 1E 06 1E 09 5F 03 62 03 64 03 62 02 60 4B 00 03 00 06 00 03 41 00 32 43 80 43 07 00 03 01 43 64 43 96 00 08 00 0B 01 00 21 1E 05 1E 03 64 03 1E 0D 1E 03 64 03 1E 0A 1E 21 64 4B 1E 09 00 0B 01 00 21 1E 08 1E 03 64 03 1E 08 1E 03 64 03 1E 0D 1E 21 64 4B 1E 0A 00 03 01 00 32 43 80 43 0B 00 02 01 00 05 64 0C 00 0B 5A 00 21 1E 03 1E 03 64 03 1E 12 1E 03 64 03 1E 08 1E 21 64 4B 1E 0D 00 0A 5A 00 21 1E 03 64 03 1E 17",
+          "length": 252
+        },
+        "staging2": {
+          "did": "300A",
+          "status": "ok",
+          "raw": "1E 03 64 03 1E 05 1E 21 64 4B 1E 0E 00 0B 01 00 21 1E 03 1E 03 64 03 1E 12 1E 03 64 03 1E 08 1E 21 64 4B 1E 0F 00 0A 01 00 21 1E 03 64 03 1E 17 1E 03 64 03 1E 05 1E 21 64 4B 1E 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00",
+          "length": 168
+        }
+      },
+      "staging": {
+        "lengths": [
+          252,
+          168
+        ],
+        "sha256": "1ae3a6388119097107529a7c62074ce47575cde35b2fff7e4c8041c2d11759d9",
+        "tracks": [
+          {
+            "id": "01",
+            "pairs": 15,
+            "units": 758,
+            "finalBrightness": 0,
+            "offset": 0
+          },
+          {
+            "id": "02",
+            "pairs": 11,
+            "units": 271,
+            "finalBrightness": 30,
+            "offset": 33
+          },
+          {
+            "id": "03",
+            "pairs": 11,
+            "units": 272,
+            "finalBrightness": 30,
+            "offset": 58
+          },
+          {
+            "id": "04",
+            "pairs": 11,
+            "units": 185,
+            "finalBrightness": 0,
+            "offset": 83
+          },
+          {
+            "id": "05",
+            "pairs": 10,
+            "units": 184,
+            "finalBrightness": 0,
+            "offset": 108
+          },
+          {
+            "id": "06",
+            "pairs": 3,
+            "units": 243,
+            "finalBrightness": 67,
+            "offset": 131
+          },
+          {
+            "id": "07",
+            "pairs": 3,
+            "units": 251,
+            "finalBrightness": 0,
+            "offset": 140
+          },
+          {
+            "id": "08",
+            "pairs": 11,
+            "units": 182,
+            "finalBrightness": 30,
+            "offset": 149
+          },
+          {
+            "id": "09",
+            "pairs": 11,
+            "units": 183,
+            "finalBrightness": 30,
+            "offset": 174
+          },
+          {
+            "id": "0A",
+            "pairs": 3,
+            "units": 179,
+            "finalBrightness": 67,
+            "offset": 199
+          },
+          {
+            "id": "0B",
+            "pairs": 2,
+            "units": 6,
+            "finalBrightness": 100,
+            "offset": 208
+          },
+          {
+            "id": "0C",
+            "pairs": 11,
+            "units": 272,
+            "finalBrightness": 30,
+            "offset": 215
+          },
+          {
+            "id": "0D",
+            "pairs": 10,
+            "units": 271,
+            "finalBrightness": 30,
+            "offset": 240
+          },
+          {
+            "id": "0E",
+            "pairs": 11,
+            "units": 183,
+            "finalBrightness": 30,
+            "offset": 263
+          },
+          {
+            "id": "0F",
+            "pairs": 10,
+            "units": 182,
+            "finalBrightness": 30,
+            "offset": 288
+          }
+        ],
+        "used": 314,
+        "ended": true,
+        "error": null
+      }
+    }
+  }
+}

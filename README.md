@@ -4,6 +4,12 @@
 
 网页界面名称为 **FLM Light Studio**；本仓库名称为 **BimmerLight Visualizer**。
 
+## 大灯研究与车机 App
+
+- [`机制.md`](机制.md)：大灯迎宾动画和诊断控制的机制、实车测得的时间单位（约 20 ms）和亮度曲线、LED 通道表，以及两个车机 App 的实现方式和实测结果。
+- [`head-unit-apps/`](head-unit-apps/README.md)：iDrive 7 车机 App **FLM Probe**（只读读取与录制）和 **FLM Lab**（实验性灯光控制）的源码、测试和装车说明。
+- [`docs/FLM02-diagnostic-jobs.md`](docs/FLM02-diagnostic-jobs.md)：FLM02 大灯模块诊断作业表和实车读数。
+
 ## 当前功能
 
 - 粘贴完整模板，或粘贴 `0x00` / `00` 格式的裸字节流。

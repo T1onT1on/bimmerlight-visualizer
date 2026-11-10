@@ -1,0 +1,28 @@
+{"demo":false,"at":"2026-11-10T08:54:18.001Z","addr":"43","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"","ok":false,"nrc":null,"text":"no answer","ms":2513}
+{"demo":false,"at":"2026-11-10T08:54:21.513Z","addr":"44","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"","ok":false,"nrc":null,"text":"no answer","ms":3506}
+{"demo":false,"at":"2026-11-10T08:54:37.684Z","addr":"43","request":"19 02 0C","what":"read faults","reply":"59 02 FF","ok":true,"nrc":null,"text":"OK","ms":245}
+{"demo":false,"at":"2026-11-10T08:54:37.886Z","addr":"44","request":"19 02 0C","what":"read faults","reply":"59 02 FF","ok":true,"nrc":null,"text":"OK","ms":197}
+{"demo":false,"at":"2026-11-10T08:54:51.549Z","addr":"43","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"","ok":false,"nrc":null,"text":"no answer","ms":2503}
+{"demo":false,"at":"2026-11-10T08:55:00.071Z","addr":"44","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"","ok":false,"nrc":null,"text":"no answer","ms":8519}
+{"demo":false,"at":"2026-11-10T08:55:09.717Z","addr":"43","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":118}
+{"demo":false,"at":"2026-11-10T08:55:09.918Z","addr":"44","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":199}
+{"demo":false,"at":"2026-11-10T08:55:33.987Z","addr":"43","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"","ok":false,"nrc":null,"text":"no answer","ms":2508}
+{"demo":false,"at":"2026-11-10T08:55:37.493Z","addr":"44","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"","ok":false,"nrc":null,"text":"no answer","ms":3504}
+{"demo":false,"at":"2026-11-10T08:55:44.978Z","addr":"43","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"","ok":false,"nrc":null,"text":"no answer","ms":5514}
+{"demo":false,"at":"2026-11-10T08:55:48.205Z","addr":"44","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":3224}
+{"demo":false,"at":"2026-11-10T08:55:50.337Z","addr":"43","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":184}
+{"demo":false,"at":"2026-11-10T08:55:50.542Z","addr":"44","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":203}
+{"demo":false,"at":"2026-11-10T08:55:52.472Z","addr":"43","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":149}
+{"demo":false,"at":"2026-11-10T08:55:52.676Z","addr":"44","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":202}
+{"demo":false,"at":"2026-11-10T08:55:55.157Z","addr":"43","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":201}
+{"demo":false,"at":"2026-11-10T08:55:55.358Z","addr":"44","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":199}
+{"demo":false,"at":"2026-11-10T08:55:58.603Z","addr":"43","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":190}
+{"demo":false,"at":"2026-11-10T08:55:58.805Z","addr":"44","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":200}
+{"demo":false,"at":"2026-11-10T08:56:01.243Z","addr":"43","request":"2E D6 DC 00 40 0A","what":"function 0x40 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":195}
+{"demo":false,"at":"2026-11-10T08:56:01.441Z","addr":"44","request":"2E D6 DC 00 40 0A","what":"function 0x40 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":197}
+{"demo":false,"at":"2026-11-10T08:56:06.919Z","addr":"43","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":197}
+{"demo":false,"at":"2026-11-10T08:56:07.121Z","addr":"44","request":"2E D6 DC 00 39 0A","what":"function 0x39 for 10 s","reply":"6E D6 DC","ok":true,"nrc":null,"text":"OK","ms":197}
+{"demo":false,"at":"2026-11-10T08:56:20.728Z","addr":"43","request":"31 02 A5 4B","what":"stop channels","reply":"71 02 A5 4B","ok":true,"nrc":null,"text":"OK","ms":239}
+{"demo":false,"at":"2026-11-10T08:56:21.030Z","addr":"44","request":"31 02 A5 4B","what":"stop channels","reply":"71 02 A5 4B","ok":true,"nrc":null,"text":"OK","ms":301}
+{"demo":false,"at":"2026-11-10T08:56:31.089Z","addr":"43","request":"19 02 0C","what":"read faults","reply":"59 02 FF","ok":true,"nrc":null,"text":"OK","ms":213}
+{"demo":false,"at":"2026-11-10T08:56:31.288Z","addr":"44","request":"19 02 0C","what":"read faults","reply":"59 02 FF","ok":true,"nrc":null,"text":"OK","ms":197}
